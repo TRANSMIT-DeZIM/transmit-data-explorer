@@ -1,4 +1,5 @@
 <script lang="ts">
+	import logo from "$lib/assets/logo.png";
 	import BarChart from "./BarChart.svelte";
 	import { data } from "$lib/data";
 
@@ -9,8 +10,8 @@
 
 <div class="grid gap-8 md:grid-cols-4 lg:grid-cols-6">
 	<div>
-		<div class="backdrop-blur items-center px-4 py-3">
-			<img src="/logo.png" alt="" />
+		<div class="items-center px-4 py-3">
+			<img src={logo} alt="TRANSMIT Project logo" />
 		</div>
 		{#each responseVars as response}
 			<button
