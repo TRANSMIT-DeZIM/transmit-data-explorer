@@ -1,0 +1,10 @@
+name,categories,missing_cat,values,exclude,sum_fn
+discr_nat,discr_nat,refuse,_freq,NA,sum
+employment,employment,refuse,_freq,NA,sum
+health,health,refuse,_freq,NA,sum
+hhecon,hhecon,missing,_freq,NA,sum
+mig_desire_cntry,mig_desire_cntry,refuse/don't know,_freq,NA,sum
+plan_mig,NA,refuse,plan_mig,Number,mean
+agegr,agegr,NA,n,NA,sum
+gender,gender,NA,n,NA,sum
+edu,edu,NA,n,NA,sum
