@@ -5,7 +5,10 @@
 
 	const responseVars = Object.keys(data);
 	let currResponse = responseVars[0];
-	$: currGroupVar = Object.keys(data[currResponse])[0];
+
+	$: currFacetVar = Object.keys(data[currResponse])[0];
+
+	$: currColourVar = Object.keys(data[currResponse][currFacetVar])[0];
 </script>
 
 <div class="grid gap-8 md:grid-cols-4 lg:grid-cols-6">
@@ -25,16 +28,27 @@
 	<div class="col-span-3 lg:col-span-5">
 		<div class="mb-3">
 			<span class="label-text">Groups</span>
-			<select class="select select-bordered select-sm m-1" bind:value={currGroupVar}>
-				{#each Object.keys(data[currResponse]) as groups}
-					<option value={groups}>{groups}</option>
+			<select class="select select-bordered select-sm m-1" bind:value={currFacetVar}>
+				{#each Object.keys(data[currResponse]) as facetBy}
+					<option value={facetBy}>{facetBy}</option>
+				{/each}
+			</select>
+
+			<span class="label-text">Colour</span>
+			<select class="select select-bordered select-sm m-1" bind:value={currColourVar}>
+				{#each Object.keys(data[currResponse][currFacetVar]) as colourBy}
+					<option value={colourBy}>{colourBy}</option>
 				{/each}
 			</select>
 		</div>
 
 		<div class="grid h-[calc(100vh-72px)] grid-cols-1 gap-3 overflow-y-auto overflow-x-hidden">
-			{#each Object.keys(data[currResponse][currGroupVar]) as category}
-				<BarChart name={category} dataset={data[currResponse][currGroupVar][category]} />
+			<!-- Each category is a value of the facetting variable -->
+			{#each Object.keys(data[currResponse][currFacetVar][currColourVar]) as category}
+				<BarChart
+					name={category}
+					dataset={data[currResponse][currFacetVar][currColourVar][category]}
+				/>
 			{/each}
 		</div>
 	</div>

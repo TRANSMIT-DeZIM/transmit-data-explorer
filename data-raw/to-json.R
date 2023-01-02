@@ -4,8 +4,9 @@ library(jsonlite)
 # Utils -------------------------------------------------------------------
 
 sum_list <- function(data,
+                     facet_vars = c("Rcountry", "stratad"),
+                     colour_vars = setdiff(c("agegr", "gender", "edu"), categories),
                      categories,
-                     missing_cat,
                      values,
                      exclude,
                      sum_fn,
@@ -14,77 +15,61 @@ sum_list <- function(data,
     data <- select(data, -all_of(exclude))
   }
 
-  ret <- setdiff(names(data), c(categories, values)) |>
-    set_names() |>
-    map(
-      sum_by,
-      data = data,
-      categories = categories,
-      missing_cat = missing_cat,
-      values = values,
-      sum_fn = sum_fn
-    )
-
-  if (sum_all) {
-    c(sum_all(data, categories, missing_cat, values, sum_fn), ret)
-  } else {
-    ret
-  }
+  map(set_names(facet_vars), \(x) {
+    map(set_names(colour_vars), \(y) {
+      sum_by(data, c(x, y), categories, values, sum_fn)
+    })
+  })
 }
 
-sum_by <- function(data, groups, categories, missing_cat, values, sum_fn) {
-  groups_ <- sym(groups)
+sum_by <- function(data, groups, categories, values, sum_fn) {
+  stopifnot(length(groups) <= 2)
+  groups_ <- syms(groups)
   categories_ <- if (is.na(categories)) NULL else sym(categories)
   values_ <- sym(values)
 
   data_grouped <- data |>
     with_groups(
-      c(!!groups_, !!categories_),
-      summarise,
-      "{values}" := do.call(sum_fn, list(!!values_))
-    ) |>
-    group_by(!!groups_)
-
-  if (is.na(categories)) {
-    return(list(" " = as_echarts_list(ungroup(data_grouped), categories, missing_cat)))
-  }
-
-  group_names <- data_grouped |>
-    group_keys() |>
-    pull(!!groups_)
-
-  data_grouped |>
-    group_split(.keep = FALSE) |>
-    set_names(group_names) |>
-    map(as_echarts_list, categories = categories, missing_cat = missing_cat)
-}
-
-sum_all <- function(data, categories, missing_cat, values, sum_fn) {
-  categories_ <- sym(categories)
-  values_ <- sym(values)
-
-  sum_tbl <- data |>
-    with_groups(
-      !!categories_,
+      c(!!!groups_, !!categories_),
       summarise,
       "{values}" := do.call(sum_fn, list(!!values_))
     )
 
-  list(all = list(" " = as_echarts_list(sum_tbl, categories, missing_cat)))
+  if (length(groups) == 2) {
+    data_grouped <- data_grouped |>
+      pivot_wider(names_from = last(groups_), values_from = !!values_)
+  }
+
+  data_grouped <- data_grouped |>
+    group_by(!!first(groups_))
+
+  if (is.na(categories)) {
+    return(list(" " = as_echarts_list(ungroup(data_grouped), categories)))
+  }
+
+  group_names <- data_grouped |>
+    group_keys() |>
+    pull(first(groups_))
+
+  data_grouped |>
+    group_split(.keep = FALSE) |>
+    set_names(group_names) |>
+    map(as_echarts_list, categories = categories)
 }
 
-as_echarts_list <- function(data, categories, missing_cat = NA) {
+as_echarts_list <- function(data, categories) {
   if (is.na(categories)) categories <- colnames(data)[1]
 
   xAxis <- list(type = "category", data = data[[categories]])
 
   series <- data |>
     select(-all_of(categories)) |>
-    map(\(series) {
+    imap(\(values, series_name) {
       list(
         type = "bar",
-        data = map2(data[[categories]], series, \(category, value) {
-          if (isTRUE(category == missing_cat)) {
+        name = series_name,
+        data = map(values, \(value) {
+          if (series_name %in% c("missing", "refuse", "refuse/don't know")) {
             lst(value, itemStyle = list(color = "#e3e3e3"))
           } else {
             lst(value)
@@ -97,6 +82,7 @@ as_echarts_list <- function(data, categories, missing_cat = NA) {
   lst(xAxis, series)
 }
 
+missing_cats <- c("missing", "refuse", "refuse/don't know")
 
 # Data --------------------------------------------------------------------
 
@@ -127,7 +113,7 @@ json_prep_meta |>
       data
     })
   ) |>
-  select(-name) |>
+  select(-c(name, missing_cat)) |>
   pmap(sum_list) |>
   set_names(json_prep_meta$name) |>
   write_json("src/lib/data.json", auto_unbox = TRUE)

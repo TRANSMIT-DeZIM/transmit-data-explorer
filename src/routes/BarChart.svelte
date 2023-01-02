@@ -7,7 +7,7 @@
 		xAxis: { type: string; data: string[] };
 		series: {
 			type: string;
-			name?: string;
+			name: string;
 			data: { value: number; itemStyle?: { color: string } };
 		}[];
 	};
