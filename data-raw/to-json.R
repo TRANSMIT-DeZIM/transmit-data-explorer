@@ -9,6 +9,7 @@ sum_list <- function(data,
                      categories,
                      values,
                      exclude,
+                     drop_missing_cat = FALSE,
                      sum_fn,
                      sum_all = !is.na(categories)) {
   if (!is.na(exclude)) {
@@ -17,12 +18,12 @@ sum_list <- function(data,
 
   map(set_names(facet_vars), \(x) {
     map(set_names(colour_vars), \(y) {
-      sum_by(data, c(x, y), categories, values, sum_fn)
+      sum_by(data, c(x, y), categories, values, drop_missing_cat, sum_fn)
     })
   })
 }
 
-sum_by <- function(data, groups, categories, values, sum_fn) {
+sum_by <- function(data, groups, categories, values, drop_missing_cat, sum_fn) {
   stopifnot(length(groups) <= 2)
   groups_ <- syms(groups)
   categories_ <- if (is.na(categories)) NULL else sym(categories)
@@ -44,7 +45,11 @@ sum_by <- function(data, groups, categories, values, sum_fn) {
     group_by(!!first(groups_))
 
   if (is.na(categories)) {
-    return(list(" " = as_echarts_list(ungroup(data_grouped), categories)))
+    return(list(" " = as_echarts_list(
+      ungroup(data_grouped),
+      categories,
+      drop_missing_cat
+    )))
   }
 
   group_names <- data_grouped |>
@@ -54,22 +59,31 @@ sum_by <- function(data, groups, categories, values, sum_fn) {
   data_grouped |>
     group_split(.keep = FALSE) |>
     set_names(group_names) |>
-    map(as_echarts_list, categories = categories)
+    map(
+      as_echarts_list,
+      categories = categories,
+      drop_missing_cat = drop_missing_cat
+    )
 }
 
-as_echarts_list <- function(data, categories) {
+as_echarts_list <- function(data, categories, drop_missing_cat) {
   if (is.na(categories)) categories <- colnames(data)[1]
 
   xAxis <- list(type = "category", data = data[[categories]])
 
+  if (drop_missing_cat) {
+    data <- select(data, -all_of(categories), -any_of(missing_cats))
+  } else {
+    data <- select(data, -all_of(categories))
+  }
+
   series <- data |>
-    select(-all_of(categories)) |>
     imap(\(values, series_name) {
       list(
         type = "bar",
         name = series_name,
         data = map(values, \(value) {
-          if (series_name %in% c("missing", "refuse", "refuse/don't know")) {
+          if (series_name %in% missing_cats) {
             lst(value, itemStyle = list(color = "#e3e3e3"))
           } else {
             lst(value)
@@ -101,6 +115,7 @@ data_raw2 <- reduce(
 )
 
 json_prep_meta <- read_csv("data-raw/json-prep-meta.csv", col_types = "c") |>
+  mutate(drop_missing_cat = name == "plan_mig") |>
   arrange(name)
 
 json_prep_meta |>
