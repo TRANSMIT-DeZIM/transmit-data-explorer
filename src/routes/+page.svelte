@@ -9,6 +9,9 @@
 	$: currFacetVar = Object.keys(data[currResponse])[0];
 
 	$: currColourVar = Object.keys(data[currResponse][currFacetVar])[0];
+
+	let showPercentages = false;
+	$: if (currResponse === "plan_mig") showPercentages = false;
 </script>
 
 <div class="grid gap-8 md:grid-cols-4 lg:grid-cols-6">
@@ -27,19 +30,28 @@
 
 	<div class="col-span-3 lg:col-span-5">
 		<div class="mb-3">
-			<span class="label-text">Groups</span>
-			<select class="select select-bordered select-sm m-1" bind:value={currFacetVar}>
-				{#each Object.keys(data[currResponse]) as facetBy}
-					<option value={facetBy}>{facetBy}</option>
-				{/each}
-			</select>
+			<label class="cursor-pointer">
+				<span class="label-text">Groups</span>
+				<select class="select select-bordered select-sm m-1 mr-4" bind:value={currFacetVar}>
+					{#each Object.keys(data[currResponse]) as facetBy}
+						<option value={facetBy}>{facetBy}</option>
+					{/each}
+				</select>
+			</label>
 
-			<span class="label-text">Colour</span>
-			<select class="select select-bordered select-sm m-1" bind:value={currColourVar}>
-				{#each Object.keys(data[currResponse][currFacetVar]) as colourBy}
-					<option value={colourBy}>{colourBy}</option>
-				{/each}
-			</select>
+			<label class="cursor-pointer">
+				<span class="label-text">Colour</span>
+				<select class="select select-bordered select-sm m-1 mr-4" bind:value={currColourVar}>
+					{#each Object.keys(data[currResponse][currFacetVar]) as colourBy}
+						<option value={colourBy}>{colourBy}</option>
+					{/each}
+				</select>
+			</label>
+
+			<label class={currResponse === "plan_mig" ? "cursor-pointer hidden" : "cursor-pointer"}>
+				<span class="label-text">Show percentages</span>
+				<input type="checkbox" class="checkbox align-middle m-1" bind:checked={showPercentages} />
+			</label>
 		</div>
 
 		<div class="grid h-[calc(100vh-72px)] grid-cols-1 gap-3 overflow-y-auto overflow-x-hidden">
@@ -48,6 +60,7 @@
 				<BarChart
 					name={category}
 					dataset={data[currResponse][currFacetVar][currColourVar][category]}
+					{showPercentages}
 				/>
 			{/each}
 		</div>

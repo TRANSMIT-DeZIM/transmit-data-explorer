@@ -8,16 +8,30 @@
 		series: {
 			type: string;
 			name: string;
-			data: { value: number; itemStyle?: { color: string } };
+			data: { value: number; itemStyle?: { color: string } }[];
 		}[];
 	};
+	export let showPercentages: boolean;
 
 	$: options = {
-		// legend: {},
+		legend: { show: name !== "Turkey" && name !== "Host", selectedMode: false },
 		tooltip: {},
 		xAxis: dataset.xAxis,
-		yAxis: {},
-		series: dataset.series,
+		yAxis: showPercentages
+			? { axisLabel: { formatter: "{value}%" } }
+			: { axisLabel: { formatter: "{value}" } },
+		series: showPercentages
+			? dataset.series.map((series) => {
+					const sum = series.data.reduce((acc, curr) => acc + curr.value, 0);
+					return {
+						...series,
+						data: series.data.map((item) => ({
+							...item,
+							value: (item.value / sum) * 100,
+						})),
+					};
+			  })
+			: dataset.series,
 	} as EChartsOptions;
 </script>
 
