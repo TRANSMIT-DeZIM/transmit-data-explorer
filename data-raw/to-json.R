@@ -77,6 +77,8 @@ as_echarts_list <- function(data, categories, drop_missing_cat) {
     data <- select(data, -all_of(categories))
   }
 
+  missing_colour_style <- list(color = "#e3e3e3")
+
   series <- data |>
     imap(\(values, series_name) {
       list(
@@ -84,16 +86,24 @@ as_echarts_list <- function(data, categories, drop_missing_cat) {
         name = series_name,
         data = map(values, \(value) {
           if (series_name %in% missing_cats) {
-            lst(value, itemStyle = list(color = "#e3e3e3"))
+            list(value = value, itemStyle = missing_colour_style)
           } else {
-            lst(value)
+            list(value = value)
           }
         })
       )
     }) |>
     unname()
 
-  lst(xAxis, series)
+  legend <- list(data = map(series, \(x) {
+      if (x$name %in% missing_cats) {
+        list(name = x$name, itemStyle = missing_colour_style)
+      } else {
+        list(name = x$name)
+      }
+    }))
+
+  lst(xAxis, series, legend)
 }
 
 missing_cats <- c("missing", "refuse", "refuse/don't know")
@@ -103,6 +113,7 @@ missing_cats <- c("missing", "refuse", "refuse/don't know")
 data_raw <- fs::dir_ls("data-raw", glob = "*.RDS") |>
   x => set_names(x, str_extract(x, "\\w+(?=\\.RDS)")) |>
   map(readRDS) |>
+  map(mutate, Rcountry = if_else(Rcountry == "Turkey", "Türkiye", Rcountry)) |>
   x => tibble(name = names(x), data = x)
 
 non_outcome_counts <- data_raw$data[[1]] |>
