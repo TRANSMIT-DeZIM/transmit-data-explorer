@@ -36,6 +36,18 @@
 					};
 			  })
 			: dataset.series,
+		dataZoom: [
+			{
+				handleIcon: "pin",
+				showDataShadow: false,
+				xAxisIndex: [],
+				yAxisIndex: [0],
+				filterMode: "none",
+				left: "2%",
+				width: 24,
+				brushSelect: false,
+			},
+		],
 	} as EChartsOptions;
 </script>
 
