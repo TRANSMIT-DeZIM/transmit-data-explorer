@@ -29,7 +29,7 @@
 	</div>
 
 	<div class="col-span-3 lg:col-span-5">
-		<div class="mb-3">
+		<div class="mb-8">
 			<label class="cursor-pointer">
 				<span class="label-text">Groups</span>
 				<select class="select select-bordered select-sm m-1 mr-4" bind:value={currFacetVar}>

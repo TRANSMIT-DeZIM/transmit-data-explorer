@@ -17,13 +17,51 @@
 	};
 	export let showPercentages: boolean;
 
+	const showLegend = name !== "Türkiye" && name !== "Host";
+
 	$: options = {
-		legend: { show: name !== "Türkiye" && name !== "Host", selectedMode: false, ...dataset.legend },
-		tooltip: {},
-		xAxis: dataset.xAxis,
-		yAxis: showPercentages
-			? { axisLabel: { formatter: "{value}%" } }
-			: { axisLabel: { formatter: "{value}" } },
+		title: {
+			text: name,
+			textStyle: {
+				fontSize: "1rem",
+				fontWeight: 500,
+			},
+			top: showLegend ? 60 : 0,
+		},
+		legend: {
+			...dataset.legend,
+			type: "scroll",
+			show: showLegend,
+			left: 80,
+			top: 0,
+			selectedMode: false,
+		},
+		tooltip: {
+			trigger: "axis",
+			axisPointer: {
+				type: "shadow",
+			},
+			appendToBody: true,
+		},
+		grid: {
+			left: 80,
+			top: showLegend ? 120 : 60,
+			bottom: showLegend ? 20 : 40,
+		},
+		xAxis: {
+			...dataset.xAxis,
+			axisLabel: {
+				hideOverlap: true,
+				width: 120,
+				interval: 0,
+				overflow: "truncate",
+			},
+		},
+		yAxis: {
+			axisLabel: {
+				formatter: showPercentages ? "{value}%" : "{value}",
+			},
+		},
 		series: showPercentages
 			? dataset.series.map((series) => {
 					const sum = series.data.reduce((acc, curr) => acc + curr.value, 0);
@@ -43,7 +81,7 @@
 				xAxisIndex: [],
 				yAxisIndex: [0],
 				filterMode: "none",
-				left: "2%",
+				left: 12,
 				width: 24,
 				brushSelect: false,
 			},
@@ -51,7 +89,6 @@
 	} as EChartsOptions;
 </script>
 
-<div class="h-[400px] w-full">
-	<span class="font-medium">{name}</span>
+<div class="{showLegend ? 'h-[460px]' : 'h-[420px]'} w-full">
 	<Chart {options} />
 </div>
