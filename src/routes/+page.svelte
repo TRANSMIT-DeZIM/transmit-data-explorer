@@ -1,6 +1,6 @@
 <script lang="ts">
 	import logo from "$lib/assets/logo.png";
-	import BarChart from "./BarChart.svelte";
+	import ChartPanel from "./ChartPanel.svelte";
 
 	export let data: Record<string, any>;
 
@@ -15,7 +15,7 @@
 	$: if (currResponse === "plan_mig") showPercentages = false;
 </script>
 
-<div class="grid gap-8 md:grid-cols-4 lg:grid-cols-6">
+<div class="grid gap-16 md:grid-cols-4 lg:grid-cols-6">
 	<div>
 		<div class="items-center px-4 py-3">
 			<img src={logo} alt="TRANSMIT Project logo" />
@@ -55,15 +55,6 @@
 			</label>
 		</div>
 
-		<div class="grid h-[calc(100vh-72px)] grid-cols-1 gap-3 overflow-y-auto overflow-x-hidden">
-			<!-- Each category is a value of the facetting variable -->
-			{#each Object.keys(data[currResponse][currFacetVar][currColourVar]) as category}
-				<BarChart
-					name={category}
-					dataset={data[currResponse][currFacetVar][currColourVar][category]}
-					{showPercentages}
-				/>
-			{/each}
-		</div>
+		<ChartPanel data={data[currResponse][currFacetVar][currColourVar]} {showPercentages} />
 	</div>
 </div>

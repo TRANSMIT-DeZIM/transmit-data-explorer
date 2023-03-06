@@ -96,12 +96,12 @@ as_echarts_list <- function(data, categories, drop_missing_cat) {
     unname()
 
   legend <- list(data = map(series, \(x) {
-      if (x$name %in% missing_cats) {
-        list(name = x$name, itemStyle = missing_colour_style)
-      } else {
-        list(name = x$name)
-      }
-    }))
+    if (x$name %in% missing_cats) {
+      list(name = x$name, itemStyle = missing_colour_style)
+    } else {
+      list(name = x$name)
+    }
+  }))
 
   lst(xAxis, series, legend)
 }
@@ -142,4 +142,4 @@ json_prep_meta |>
   select(-c(name, missing_cat)) |>
   pmap(sum_list) |>
   set_names(json_prep_meta$name) |>
-  write_json("src/lib/data.json", na = "null", auto_unbox = TRUE)
+  write_json("src/lib/data.json", na = "null", auto_unbox = TRUE, digits = 2)

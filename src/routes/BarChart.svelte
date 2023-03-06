@@ -1,21 +1,11 @@
 <script lang="ts">
-	import { Chart } from "svelte-echarts";
-	import type { EChartsOptions } from "svelte-echarts";
+	import { Chart, type EChartsOptions } from "svelte-echarts";
+	import type { BarChartDataset } from "./utils";
 
 	export let name: string;
-	export let dataset: {
-		xAxis: { type: string; data: string[] };
-		series: {
-			type: string;
-			name: string;
-			data: { value: number; itemStyle?: { color: string } }[];
-		}[];
-		legend: {
-			name: string;
-			itemStyle?: { color: string };
-		}[];
-	};
+	export let dataset: BarChartDataset;
 	export let showPercentages: boolean;
+	export let yMax: number;
 
 	const showLegend = name !== "Türkiye" && name !== "Host";
 
@@ -46,7 +36,7 @@
 		grid: {
 			left: 80,
 			top: showLegend ? 120 : 60,
-			bottom: showLegend ? 20 : 40,
+			bottom: showLegend ? 24 : 44,
 		},
 		xAxis: {
 			...dataset.xAxis,
@@ -58,22 +48,12 @@
 			},
 		},
 		yAxis: {
+			max: Math.ceil(yMax),
 			axisLabel: {
 				formatter: showPercentages ? "{value}%" : "{value}",
 			},
 		},
-		series: showPercentages
-			? dataset.series.map((series) => {
-					const sum = series.data.reduce((acc, curr) => acc + curr.value, 0);
-					return {
-						...series,
-						data: series.data.map((item) => ({
-							...item,
-							value: (item.value / sum) * 100,
-						})),
-					};
-			  })
-			: dataset.series,
+		series: showPercentages ? dataset.seriesPct : dataset.series,
 		dataZoom: [
 			{
 				handleIcon: "pin",
