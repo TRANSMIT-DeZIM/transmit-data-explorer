@@ -1,7 +1,8 @@
 <script lang="ts">
 	import logo from "$lib/assets/logo.png";
 	import BarChart from "./BarChart.svelte";
-	import { data } from "$lib/data";
+
+	export let data: Record<string, any>;
 
 	const responseVars = Object.keys(data);
 	let currResponse = responseVars[0];
