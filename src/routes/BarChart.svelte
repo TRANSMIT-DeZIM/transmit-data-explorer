@@ -24,7 +24,6 @@
 			text: name,
 			textStyle: {
 				fontSize: "1rem",
-				fontWeight: 500,
 			},
 			top: showLegend ? 60 : 0,
 		},
@@ -32,7 +31,7 @@
 			...dataset.legend,
 			type: "scroll",
 			show: showLegend,
-			left: 80,
+			left: 0,
 			top: 0,
 			selectedMode: false,
 		},
@@ -42,6 +41,7 @@
 				type: "shadow",
 			},
 			appendToBody: true,
+			valueFormatter: showPercentages ? (value: number) => value.toFixed(2) + "%" : undefined,
 		},
 		grid: {
 			left: 80,

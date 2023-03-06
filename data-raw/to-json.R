@@ -142,4 +142,4 @@ json_prep_meta |>
   select(-c(name, missing_cat)) |>
   pmap(sum_list) |>
   set_names(json_prep_meta$name) |>
-  write_json("src/lib/data.json", auto_unbox = TRUE)
+  write_json("src/lib/data.json", na = "null", auto_unbox = TRUE)
