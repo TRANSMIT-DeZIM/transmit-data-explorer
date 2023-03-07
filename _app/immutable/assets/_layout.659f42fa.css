@@ -2794,9 +2794,6 @@ html {
 .h-\[calc\(100vh-72px\)\] {
   height: calc(100vh - 72px);
 }
-.w-60 {
-  width: 15rem;
-}
 .w-80 {
   width: 20rem;
 }
@@ -2845,6 +2842,16 @@ html {
 .align-middle {
   vertical-align: middle;
 }
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.uppercase {
+  text-transform: uppercase;
+}
 .text-base-content {
   --tw-text-opacity: 1;
   color: hsl(var(--bc) / var(--tw-text-opacity));
@@ -2864,9 +2871,6 @@ html {
   content: var(--tw-content);
 }
 @media (min-width: 1024px) {
-  .lg\:block {
-    display: block;
-  }
   .lg\:hidden {
     display: none;
   }

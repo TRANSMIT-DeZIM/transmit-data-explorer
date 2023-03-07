@@ -5,18 +5,16 @@
 		<link rel="icon" href="./favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="content-security-policy" content="">
-		<link href="./_app/immutable/assets/_layout.7ac4ac9b.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/_layout.16f9649f.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/_page.5f006fac.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.be01f935.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.972cdf2b.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.50a0f6db.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.15f8578a.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/_layout.svelte.475e6654.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.464641f9.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.e4abeefa.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.d4418dd1.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.31c42489.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/_layout.svelte.2ba9be28.js">
 		<link rel="modulepreload" href="./_app/immutable/entry/_layout.ts.984db11e.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/_layout.da46b06b.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/_page.svelte.7478e72b.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/_page.ts.027205c7.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/_page.bcedab91.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/_page.svelte.adb180c5.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
@@ -24,14 +22,16 @@
 
 <div class="drawer drawer-mobile"><input id="page-drawer" type="checkbox" class="drawer-toggle">
 
-	<div class="drawer-content flex flex-col p-4"><span class="flex items-center mb-4 w-60 lg:hidden before:text-xs before:content-[attr(data-tip)]"><label for="page-drawer" class="btn btn-square btn-ghost drawer-button"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" stroke="currentColor" fill="currentColor"><!-- HTML_TAG_START --><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path><!-- HTML_TAG_END --></svg></label>
-			<img class="p-4" src="/_app/immutable/assets/logo.a68b8dcf.png" alt="TRANSMIT Project logo"></span>
+	<div class="drawer-content flex flex-col p-4"><span class="flex items-center mb-4 lg:hidden before:text-xs before:content-[attr(data-tip)]"><label for="page-drawer" class="btn btn-square btn-ghost drawer-button mr-4"><svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" stroke="currentColor" fill="currentColor"><!-- HTML_TAG_START --><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path><!-- HTML_TAG_END --></svg></label>
+			<h1 class="text-lg font-bold uppercase">agegr</h1></span>
 
 		<div class="mb-8"><label class="cursor-pointer"><span class="label-text">Groups</span>
 				<select class="select select-bordered select-sm m-1 mr-4"><option value="Rcountry">Rcountry</option><option value="stratad">stratad</option></select></label>
 
 			<label class="cursor-pointer"><span class="label-text">Colour</span>
 				<select class="select select-bordered select-sm m-1 mr-4"><option value="gender">gender</option><option value="edu">edu</option></select></label>
+
+			<br class="lg:hidden">
 
 			<label class="cursor-pointer"><span class="label-text">Show percentages</span>
 				<input type="checkbox" class="toggle align-middle m-1"></label></div>
@@ -41,7 +41,7 @@
 
 	<div class="drawer-side"><label for="page-drawer" class="drawer-overlay"></label>
 
-		<div class="menu p-4 pr-8 w-80 bg-base-100 text-base-content"><div class="p-4 hidden lg:block"><img src="/_app/immutable/assets/logo.a68b8dcf.png" alt="TRANSMIT Project logo"></div>
+		<div class="menu p-4 pr-8 w-80 bg-base-100 text-base-content"><div class="p-4"><img src="/_app/immutable/assets/logo.a68b8dcf.png" alt="TRANSMIT Project logo"></div>
 
 			<div class="mt-4"><button class="btn btn-ghost btn-sm m-1 block w-full text-left btn-active">agegr</button><button class="btn btn-ghost btn-sm m-1 block w-full text-left">discr_nat</button><button class="btn btn-ghost btn-sm m-1 block w-full text-left">edu</button><button class="btn btn-ghost btn-sm m-1 block w-full text-left">employment</button><button class="btn btn-ghost btn-sm m-1 block w-full text-left">gender</button><button class="btn btn-ghost btn-sm m-1 block w-full text-left">health</button><button class="btn btn-ghost btn-sm m-1 block w-full text-left">hhecon</button><button class="btn btn-ghost btn-sm m-1 block w-full text-left">mig_desire_cntry</button><button class="btn btn-ghost btn-sm m-1 block w-full text-left">plan_mig</button></div></div></div></div>
 
@@ -49,7 +49,7 @@
 			
 			<script>
 				{
-					__sveltekit_1xlu5n9 = {
+					__sveltekit_1l776gh = {
 						env: {},
 						base: new URL(".", location).pathname.slice(0, -1),
 						element: document.currentScript.parentElement
@@ -58,10 +58,10 @@
 					const data = [null,null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.be01f935.js"),
-						import("./_app/immutable/entry/app.15f8578a.js")
+						import("./_app/immutable/entry/start.464641f9.js"),
+						import("./_app/immutable/entry/app.31c42489.js")
 					]).then(([kit, app]) => {
-						kit.start(app, __sveltekit_1xlu5n9.element, {
+						kit.start(app, __sveltekit_1l776gh.element, {
 							node_ids: [0, 2],
 							data,
 							form: null,
