@@ -3,8 +3,7 @@
 	import hamburger from "$lib/assets/hamburger.svg?raw";
 	import logo from "$lib/assets/logo.png";
 	import ChartPanel from "./ChartPanel.svelte";
-
-	export let data: Record<string, any>;
+	import { data } from "$lib/data";
 
 	const responseVars = Object.keys(data);
 	let currResponse = responseVars[0];
