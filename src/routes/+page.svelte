@@ -22,12 +22,12 @@
 
 	<div class="drawer-content flex flex-col p-4">
 		<span
-			class="flex items-center mb-4 w-60 lg:hidden before:text-xs before:content-[attr(data-tip)]"
+			class="flex items-center mb-4 lg:hidden before:text-xs before:content-[attr(data-tip)]"
 		>
-			<label for="page-drawer" class="btn btn-square btn-ghost drawer-button"
+			<label for="page-drawer" class="btn btn-square btn-ghost drawer-button mr-4"
 				><Icon data={hamburger} /></label
 			>
-			<img class="p-4" src={logo} alt="TRANSMIT Project logo" />
+			<h1 class="text-lg font-bold uppercase">{currResponse}</h1>
 		</span>
 
 		<div class="mb-8">
@@ -49,6 +49,8 @@
 				</select>
 			</label>
 
+			<br class="lg:hidden" />
+
 			<label class={currResponse === "plan_mig" ? "cursor-pointer hidden" : "cursor-pointer"}>
 				<span class="label-text">Show percentages</span>
 				<input type="checkbox" class="toggle align-middle m-1" bind:checked={showPercentages} />
@@ -62,7 +64,7 @@
 		<label for="page-drawer" class="drawer-overlay" />
 
 		<div class="menu p-4 pr-8 w-80 bg-base-100 text-base-content">
-			<div class="p-4 hidden lg:block">
+			<div class="p-4">
 				<img src={logo} alt="TRANSMIT Project logo" />
 			</div>
 

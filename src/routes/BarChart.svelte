@@ -30,7 +30,6 @@
 			axisPointer: {
 				type: "shadow",
 			},
-			appendToBody: true,
 			valueFormatter: showPercentages ? (value: number) => value.toFixed(2) + "%" : undefined,
 		},
 		grid: {
