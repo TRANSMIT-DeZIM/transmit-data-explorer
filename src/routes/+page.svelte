@@ -20,12 +20,10 @@
 	<input id="page-drawer" type="checkbox" class="drawer-toggle" />
 
 	<div class="drawer-content flex flex-col p-4">
-		<span
-			class="flex items-center mb-4 lg:hidden before:text-xs before:content-[attr(data-tip)]"
-		>
-			<label for="page-drawer" class="btn btn-square btn-ghost drawer-button mr-4"
-				><Icon data={hamburger} /></label
-			>
+		<span class="flex items-center mb-4 lg:hidden before:text-xs before:content-[attr(data-tip)]">
+			<label for="page-drawer" class="btn btn-square btn-ghost drawer-button mr-4">
+				<Icon data={hamburger} />
+			</label>
 			<h1 class="text-lg font-bold uppercase">{currResponse}</h1>
 		</span>
 

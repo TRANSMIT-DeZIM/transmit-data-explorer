@@ -28,3 +28,36 @@ export function seriesToPercentages(series: BarChartDataset["series"]): BarChart
 		};
 	});
 }
+
+// Adapted from https://svelte.dev/repl/7729845536404efcaf1f6c65328df3f2
+export function accordion(
+	node: HTMLElement,
+	{ isOpen, collapsedHeight }: { isOpen: boolean; collapsedHeight: string }
+) {
+	const initialHeight = node.offsetHeight;
+	node.style.height = isOpen ? "auto" : collapsedHeight;
+	node.style.overflow = "hidden";
+	return {
+		update({ isOpen, collapsedHeight }: { isOpen: boolean; collapsedHeight: string }) {
+			const animation = node.animate(
+				[
+					{
+						height: initialHeight + "px",
+						overflow: "hidden",
+					},
+					{
+						height: collapsedHeight,
+						overflow: "hidden",
+					},
+				],
+				{ duration: 150, fill: "both" }
+			);
+			animation.pause();
+			if (!isOpen) {
+				animation.play();
+			} else {
+				animation.reverse();
+			}
+		},
+	};
+}

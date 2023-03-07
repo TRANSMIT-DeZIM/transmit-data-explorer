@@ -20,7 +20,7 @@
 	);
 </script>
 
-<div class="grid h-[calc(100vh-72px)] grid-cols-1 gap-3 overflow-y-auto overflow-x-hidden">
+<div class="grid max-h-[calc(100vh-72px)] grid-cols-1 gap-3 overflow-y-auto overflow-x-hidden">
 	<!-- Each category is a value of the facetting variable -->
 	{#each Object.keys(data) as category}
 		<BarChart name={category} dataset={data[category]} {showPercentages} {yMax} />

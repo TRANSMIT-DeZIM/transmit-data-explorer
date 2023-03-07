@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Chart, type EChartsOptions } from "svelte-echarts";
 	import type { BarChartDataset } from "./utils";
+	import { accordion } from "./utils";
 
 	export let name: string;
 	export let dataset: BarChartDataset;
@@ -15,6 +16,7 @@
 			textStyle: {
 				fontSize: "1rem",
 			},
+			left: 36,
 			top: showLegend ? 60 : 0,
 		},
 		legend: {
@@ -66,9 +68,21 @@
 				brushSelect: false,
 			},
 		],
+		animationDuration: 500,
 	} as EChartsOptions;
+
+	let displayChart = true;
+	$: collapsedHeight = showLegend ? "100px" : "40px";
 </script>
 
-<div class="{showLegend ? 'h-[460px]' : 'h-[420px]'} w-full">
-	<Chart {options} />
+<div class="relative w-full" use:accordion={{ isOpen: displayChart, collapsedHeight }}>
+	<input
+		type="checkbox"
+		class="toggle toggle-sm z-50 absolute {showLegend ? 'top-[60px]' : 'top-0'}"
+		class:hidden={name === " "}
+		bind:checked={displayChart}
+	/>
+	<div class={showLegend ? "h-[460px]" : "h-[420px]"}>
+		<Chart {options} />
+	</div>
 </div>
