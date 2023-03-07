@@ -41,16 +41,18 @@ sum_by <- function(data, groups, categories, values, drop_missing_cat, sum_fn) {
       pivot_wider(names_from = last(groups_), values_from = !!values_)
   }
 
-  data_grouped <- data_grouped |>
-    group_by(!!first(groups_))
-
   if (is.na(categories)) {
     return(list(" " = as_echarts_list(
-      ungroup(data_grouped),
+      data_grouped,
       categories,
       drop_missing_cat
     )))
   }
+
+  data_grouped <- data_grouped |>
+    expand(!!first(groups_), !!categories_) |>
+    left_join(data_grouped, by = c(groups[1], categories)) |>
+    group_by(!!first(groups_))
 
   group_names <- data_grouped |>
     group_keys() |>
@@ -136,7 +138,8 @@ json_prep_meta |>
       if (!is.na(categories) && !is.na(missing_cat)) {
         data[[categories]] <- fct_relevel(data[[categories]], missing_cat, after = Inf)
       }
-      data
+      data |>
+        mutate(across(where(is.factor), fct_drop))
     })
   ) |>
   select(-c(name, missing_cat)) |>
