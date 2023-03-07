@@ -2,6 +2,7 @@ export type BarChartDataset = {
 	xAxis: { type: string; data: string[] };
 	series: {
 		type: string;
+		id: string;
 		name: string;
 		data: { value: number; itemStyle?: { color: string } }[];
 	}[];

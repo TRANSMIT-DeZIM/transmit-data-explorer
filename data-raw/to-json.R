@@ -85,6 +85,7 @@ as_echarts_list <- function(data, categories, drop_missing_cat) {
     imap(\(values, series_name) {
       list(
         type = "bar",
+        id = janitor::make_clean_names(series_name),
         name = series_name,
         data = map(values, \(value) {
           if (series_name %in% missing_cats) {
