@@ -36,6 +36,7 @@
 		grid: {
 			left: 80,
 			top: showLegend ? 120 : 60,
+			right: "4%",
 			bottom: showLegend ? 24 : 44,
 		},
 		xAxis: {
