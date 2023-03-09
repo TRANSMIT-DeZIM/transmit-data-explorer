@@ -71,7 +71,11 @@
 				brushSelect: false,
 			},
 		],
-		color: interpolateColours("#194939", "#ed7d31", 1.2, dataset.series.length),
+		color: interpolateColours(
+			"#194939",
+			"#ed7d31",
+			dataset.series.filter((series) => !series.data.some((item) => "itemStyle" in item)).length
+		),
 		animationDuration: 500,
 	} as EChartsOptions;
 
