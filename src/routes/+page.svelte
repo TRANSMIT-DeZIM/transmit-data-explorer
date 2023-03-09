@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { ChangeEventHandler } from "./utils";
 	import Icon from "svelte-icon/Icon.svelte";
 	import hamburger from "$lib/assets/hamburger.svg?raw";
 	import logo from "$lib/assets/logo.png";
@@ -8,9 +9,46 @@
 	const responseVars = Object.keys(data);
 	let currResponse = responseVars[0];
 
-	$: currFacetVar = Object.keys(data[currResponse])[0];
+	let facetVars: string[];
+	let currFacetVar: string;
+	let prevFacetVar: string;
 
-	$: currColourVar = Object.keys(data[currResponse][currFacetVar])[0];
+	let colourVars: string[];
+	let currColourVar: string;
+	let prevColourVar: string;
+
+	// $: {
+	// 	const facetVars = Object.keys(data[currResponse]);
+	// 	currFacetVar = facetVars.includes(prevFacetVar) ? prevFacetVar : facetVars[0];
+	// 	prevFacetVar = currFacetVar;
+
+	// 	const colourVars = Object.keys(data[currResponse][currFacetVar]);
+	// 	currColourVar = colourVars.includes(currColourVar) ? prevColourVar : colourVars[0];
+	// 	prevColourVar = currColourVar;
+	// }
+
+	$: {
+		if (currResponse) {
+			facetVars = Object.keys(data[currResponse]);
+			currFacetVar = facetVars.includes(prevFacetVar) ? prevFacetVar : facetVars[0];
+
+			colourVars = Object.keys(data[currResponse][currFacetVar]);
+			currColourVar = colourVars.includes(prevColourVar) ? prevColourVar : colourVars[0];
+
+			prevFacetVar = currFacetVar;
+			prevColourVar = currColourVar;
+		}
+	}
+
+	function handleFacetChange(event: ChangeEventHandler<HTMLSelectElement>) {
+		prevFacetVar = currFacetVar;
+		currFacetVar = event.currentTarget.value;
+	}
+
+	function handleColourChange(event: ChangeEventHandler<HTMLSelectElement>) {
+		prevColourVar = currColourVar;
+		currColourVar = event.currentTarget.value;
+	}
 
 	let showPercentages = false;
 	$: if (currResponse === "plan_mig") showPercentages = false;
@@ -30,7 +68,11 @@
 		<div class="mb-8">
 			<label class="cursor-pointer">
 				<span class="label-text">Groups</span>
-				<select class="select select-bordered select-sm m-1 mr-4" bind:value={currFacetVar}>
+				<select
+					class="select select-bordered select-sm m-1 mr-4"
+					bind:value={currFacetVar}
+					on:change={handleFacetChange}
+				>
 					{#each Object.keys(data[currResponse]) as facetBy}
 						<option value={facetBy}>{facetBy}</option>
 					{/each}
@@ -39,7 +81,11 @@
 
 			<label class="cursor-pointer">
 				<span class="label-text">Colour</span>
-				<select class="select select-bordered select-sm m-1 mr-4" bind:value={currColourVar}>
+				<select
+					class="select select-bordered select-sm m-1 mr-4"
+					bind:value={currColourVar}
+					on:change={handleColourChange}
+				>
 					{#each Object.keys(data[currResponse][currFacetVar]) as colourBy}
 						<option value={colourBy}>{colourBy}</option>
 					{/each}

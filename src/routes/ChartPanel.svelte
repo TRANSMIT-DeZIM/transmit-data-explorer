@@ -9,7 +9,6 @@
 		Object.keys(data).forEach((category) => {
 			if ("seriesPct" in data[category]) return;
 			data[category].seriesPct = seriesToPercentages(data[category].series);
-			console.log(Math.random());
 		});
 	}
 

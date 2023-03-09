@@ -1,3 +1,5 @@
+export type ChangeEventHandler<T> = Event & { currentTarget: EventTarget & T };
+
 export type BarChartDataset = {
 	xAxis: { type: string; data: string[] };
 	series: {
