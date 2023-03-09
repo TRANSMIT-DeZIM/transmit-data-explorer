@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { Chart, type EChartsOptions } from "svelte-echarts";
-	import type { BarChartDataset } from "./utils";
-	import { accordion } from "./utils";
+	import { accordion, interpolateColours, type BarChartDataset } from "./utils";
 
 	export let name: string;
 	export let dataset: BarChartDataset;
@@ -58,7 +57,11 @@
 		series: showPercentages ? dataset.seriesPct : dataset.series,
 		dataZoom: [
 			{
+				backgroundColor: "#fff",
+				fillerColor: "#d2d4d7",
+				borderColor: "#d2d4d7",
 				handleIcon: "pin",
+				handleStyle: { borderColor: "#000" },
 				showDataShadow: false,
 				xAxisIndex: [],
 				yAxisIndex: [0],
@@ -68,6 +71,7 @@
 				brushSelect: false,
 			},
 		],
+		color: interpolateColours("#194939", "#ed7d31", 1.2, dataset.series.length),
 		animationDuration: 500,
 	} as EChartsOptions;
 

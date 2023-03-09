@@ -1,3 +1,5 @@
+import { interpolateRgb, quantize } from "d3-interpolate";
+
 export type ChangeEventHandler<T> = Event & { currentTarget: EventTarget & T };
 
 export type BarChartDataset = {
@@ -30,6 +32,10 @@ export function seriesToPercentages(series: BarChartDataset["series"]): BarChart
 			})),
 		};
 	});
+}
+
+export function interpolateColours(col1: string, col2: string, gamma = 1, n: number): string[] {
+	return quantize(interpolateRgb.gamma(gamma)(col1, col2), n);
 }
 
 // Adapted from https://svelte.dev/repl/7729845536404efcaf1f6c65328df3f2
