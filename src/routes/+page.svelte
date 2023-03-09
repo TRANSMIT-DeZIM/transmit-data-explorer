@@ -17,16 +17,6 @@
 	let currColourVar: string;
 	let prevColourVar: string;
 
-	// $: {
-	// 	const facetVars = Object.keys(data[currResponse]);
-	// 	currFacetVar = facetVars.includes(prevFacetVar) ? prevFacetVar : facetVars[0];
-	// 	prevFacetVar = currFacetVar;
-
-	// 	const colourVars = Object.keys(data[currResponse][currFacetVar]);
-	// 	currColourVar = colourVars.includes(currColourVar) ? prevColourVar : colourVars[0];
-	// 	prevColourVar = currColourVar;
-	// }
-
 	$: {
 		if (currResponse) {
 			facetVars = Object.keys(data[currResponse]);
