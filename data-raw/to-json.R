@@ -116,7 +116,10 @@ missing_cats <- c("missing", "refuse", "refuse/don't know")
 data_raw <- fs::dir_ls("data-raw", glob = "*.RDS") |>
   x => set_names(x, str_extract(x, "\\w+(?=\\.RDS)")) |>
   map(readRDS) |>
-  map(mutate, Rcountry = if_else(Rcountry == "Turkey", "Türkiye", Rcountry)) |>
+  map(mutate, across(
+    c(Rcountry, any_of("mig_desire_cntry")),
+    \(x) fct_recode(x, "Türkiye" = "Turkey")
+  )) |>
   x => tibble(name = names(x), data = x)
 
 non_outcome_counts <- data_raw$data[[1]] |>
