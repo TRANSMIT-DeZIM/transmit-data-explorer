@@ -86,7 +86,7 @@
 <div class="relative w-full" use:accordion={{ isOpen: displayChart, collapsedHeight }}>
 	<input
 		type="checkbox"
-		class="toggle toggle-sm z-50 absolute {showLegend ? 'top-[60px]' : 'top-0'}"
+		class="toggle toggle-sm absolute z-50 {showLegend ? 'top-[60px]' : 'top-0'}"
 		class:hidden={name === " "}
 		bind:checked={displayChart}
 	/>

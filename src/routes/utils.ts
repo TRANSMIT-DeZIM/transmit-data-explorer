@@ -43,15 +43,15 @@ export function accordion(
 	node: HTMLElement,
 	{ isOpen, collapsedHeight }: { isOpen: boolean; collapsedHeight: string }
 ) {
-	const initialHeight = node.offsetHeight;
-	node.style.height = isOpen ? "auto" : collapsedHeight;
+	const initialHeight = node.offsetHeight + "px";
+	node.style.height = isOpen ? initialHeight : collapsedHeight;
 	node.style.overflow = "hidden";
 	return {
 		update({ isOpen, collapsedHeight }: { isOpen: boolean; collapsedHeight: string }) {
 			const animation = node.animate(
 				[
 					{
-						height: initialHeight + "px",
+						height: initialHeight,
 						overflow: "hidden",
 					},
 					{
