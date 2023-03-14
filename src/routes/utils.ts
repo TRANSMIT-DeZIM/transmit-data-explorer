@@ -2,7 +2,7 @@ import { interpolateHsl, quantize } from "d3-interpolate";
 
 export type ChangeEventHandler<T> = Event & { currentTarget: EventTarget & T };
 
-export type BarChartDataset = {
+export type EChartsOptsData = {
 	xAxis: { type: string; data: string[] };
 	series: {
 		type: string;
@@ -10,28 +10,20 @@ export type BarChartDataset = {
 		name: string;
 		data: { value: number; itemStyle?: { color: string } }[];
 	}[];
-	seriesPct: BarChartDataset["series"];
 	legend: {
-		name: string;
-		itemStyle?: { color: string };
-	}[];
+		data: {
+			name: string;
+			itemStyle?: { color: string };
+		}[];
+	};
 };
 
-export function seriesValues(series: BarChartDataset["series"]): number[] {
-	return series.flatMap((series) => series.data.map((item) => item.value));
-}
-
-export function seriesToPercentages(series: BarChartDataset["series"]): BarChartDataset["series"] {
-	return series.map((series) => {
-		const sum = series.data.reduce((acc, curr) => acc + curr.value, 0);
-		return {
-			...series,
-			data: series.data.map((item) => ({
-				...item,
-				value: (item.value / sum) * 100,
-			})),
-		};
-	});
+export function unzipObj<T>(arr: Record<string, T>[]): Record<string, T[]> {
+	return arr.reduce((acc, curr) => {
+		return Object.entries(curr).reduce((acc, [key, value]) => {
+			return { ...acc, [key]: [...(acc[key] || []), value] };
+		}, acc);
+	}, {} as Record<string, T[]>);
 }
 
 export function interpolateColours(col1: string, col2: string, n: number): string[] {
