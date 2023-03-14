@@ -1,10 +1,10 @@
-name,categories,missing_cat,values,exclude,sum_fn
-discr_nat,discr_nat,refuse,_freq,NA,sum
-employment,employment,refuse,_freq,NA,sum
-health,health,refuse,_freq,NA,sum
-hhecon,hhecon,missing,_freq,NA,sum
-mig_desire_cntry,mig_desire_cntry,refuse/don't know,_freq,NA,sum
-plan_mig,NA,refuse,plan_mig,Number,mean
-agegr,agegr,NA,n,NA,sum
-gender,gender,NA,n,NA,sum
-edu,edu,refuse,n,NA,sum
+name,value,weight,missing_cat
+agegr,n,NA,NA
+discr_nat,_freq,NA,refuse
+edu,n,NA,refuse
+employment,_freq,NA,refuse
+gender,n,NA,NA
+health,_freq,NA,refuse
+hhecon,_freq,NA,missing
+mig_desire_cntry,_freq,NA,refuse/don't know
+plan_mig,plan_mig,Number,refuse

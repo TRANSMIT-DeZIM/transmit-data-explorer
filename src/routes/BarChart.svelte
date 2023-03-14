@@ -1,13 +1,40 @@
 <script lang="ts">
 	import { Chart, type EChartsOptions } from "svelte-echarts";
-	import { accordion, interpolateColours, type BarChartDataset } from "./utils";
+	import { accordion, interpolateColours, type EChartsOptsData } from "./utils";
 
 	export let name: string;
-	export let dataset: BarChartDataset;
+	export let dataObj: Record<string, string | number[]>;
 	export let showPercentages: boolean;
+	export let xVar: string;
 	export let yMax: number;
 
 	const showLegend = name !== "Türkiye" && name !== "Host";
+
+	function makeEChartsData({ [xVar]: xValues, ...data }): EChartsOptsData {
+		const missingCats = ["missing", "refuse", "refuse/don't know"];
+		const missingStyle = { color: "#e3e3e3" };
+
+		const series = Object.entries(data).map(([name, values]) => ({
+			type: "bar",
+			id: name,
+			name,
+			data: values.map((value: number) =>
+				missingCats.includes(name) ? { value, itemStyle: missingStyle } : { value }
+			),
+		}));
+
+		return {
+			xAxis: {type: "category", data : xValues},
+			series,
+			legend: {
+				data: series.map(({ name, ..._ }) =>
+					missingCats.includes(name) ? { name, itemStyle: missingStyle } : { name }
+				),
+			},
+		};
+	}
+
+	$: optsData = makeEChartsData(dataObj);
 
 	$: options = {
 		title: {
@@ -19,7 +46,7 @@
 			top: showLegend ? 60 : 0,
 		},
 		legend: {
-			...dataset.legend,
+			...optsData.legend,
 			type: "scroll",
 			show: showLegend,
 			left: 0,
@@ -40,7 +67,7 @@
 			bottom: showLegend ? 24 : 44,
 		},
 		xAxis: {
-			...dataset.xAxis,
+			...optsData.xAxis,
 			axisLabel: {
 				hideOverlap: true,
 				width: 120,
@@ -54,7 +81,7 @@
 				formatter: showPercentages ? "{value}%" : "{value}",
 			},
 		},
-		series: showPercentages ? dataset.seriesPct : dataset.series,
+		series: optsData.series,
 		dataZoom: [
 			{
 				backgroundColor: "#fff",
@@ -74,7 +101,7 @@
 		color: interpolateColours(
 			"#194939",
 			"#ed7d31",
-			dataset.series.filter((series) => !series.data.some((item) => "itemStyle" in item)).length
+			optsData.series.filter((series) => !series.data.some((item) => "itemStyle" in item)).length
 		),
 		animationDuration: 500,
 	} as EChartsOptions;
@@ -92,5 +119,6 @@
 	/>
 	<div class={showLegend ? "h-[460px]" : "h-[420px]"}>
 		<Chart {options} />
+		<!-- <pre class="max-h-[calc(100vh-72px)] overflow-y-auto">{JSON.stringify(optsData, null, 4)}</pre> -->
 	</div>
 </div>
