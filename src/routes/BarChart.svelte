@@ -24,7 +24,7 @@
 		}));
 
 		return {
-			xAxis: {type: "category", data : xValues},
+			xAxis: { type: "category", data: xValues },
 			series,
 			legend: {
 				data: series.map(({ name, ..._ }) =>
@@ -103,6 +103,10 @@
 			"#ed7d31",
 			optsData.series.filter((series) => !series.data.some((item) => "itemStyle" in item)).length
 		),
+		textStyle: {
+			fontFamily:
+				'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji"',
+		},
 		animationDuration: 500,
 	} as EChartsOptions;
 
@@ -119,6 +123,5 @@
 	/>
 	<div class={showLegend ? "h-[460px]" : "h-[420px]"}>
 		<Chart {options} />
-		<!-- <pre class="max-h-[calc(100vh-72px)] overflow-y-auto">{JSON.stringify(optsData, null, 4)}</pre> -->
 	</div>
 </div>
