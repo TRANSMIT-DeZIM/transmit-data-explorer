@@ -12,36 +12,42 @@
 	let currResponse = responseVars[0];
 
 	const facetVars = ["Rcountry", "stratad"];
-	let currFacetVar: string;
+	let currFacetVar = facetVars[0];
 	let prevFacetVar: string;
 
-	const filterValueSet = ["Syrian", "Host", "Lebanon", "Türkiye"];
-	let currFilterVar: string;
-	let currFilterOptions: string[];
-	let currFilterValues = [...filterValueSet];
+	const filterOptions: Record<string, string[]> = {
+		Rcountry: ["Lebanon", "Türkiye"],
+		stratad: ["Syrian", "Host"],
+	};
+	let currFilterVar = facetVars[1];
+	let currFilterOptions = filterOptions[currFilterVar];
+	let currFilterValues = currFilterOptions;
 
-	let colourVars: string[];
-	let currColourVar: string;
+	let colourVars = ["agegr", "edu", "gender"].filter((x) => x !== currResponse);
+	let currColourVar = colourVars[0];
 	let prevColourVar: string;
 
-	$: {
-		currFacetVar = facetVars.includes(prevFacetVar) ? prevFacetVar : facetVars[0];
+	function handleResponseChange(event: ChangeEventHandler<HTMLButtonElement>) {
+		currResponse = event.currentTarget.textContent!;
+
 		prevFacetVar = currFacetVar;
+		currFacetVar = facetVars.includes(prevFacetVar) ? prevFacetVar : facetVars[0];
 
 		currFilterVar = currFacetVar === "Rcountry" ? "stratad" : "Rcountry";
-		currFilterOptions = currFilterVar === "stratad" ? ["Syrian", "Host"] : ["Lebanon", "Türkiye"];
-	}
+		currFilterOptions = filterOptions[currFilterVar];
 
-	$: {
 		colourVars = ["agegr", "edu", "gender"].filter((x) => x !== currResponse);
-		currColourVar = colourVars.includes(prevColourVar) ? prevColourVar : colourVars[0];
 		prevColourVar = currColourVar;
+		currColourVar = colourVars.includes(prevColourVar) ? prevColourVar : colourVars[0];
 	}
 
 	function handleFacetChange(event: ChangeEventHandler<HTMLSelectElement>) {
 		prevFacetVar = currFacetVar;
 		currFacetVar = event.currentTarget.value;
-		currFilterValues = [...filterValueSet];
+
+		currFilterVar = currFacetVar === "Rcountry" ? "stratad" : "Rcountry";
+		currFilterOptions = filterOptions[currFilterVar];
+		currFilterValues = currFilterOptions;
 	}
 
 	function handleColourChange(event: ChangeEventHandler<HTMLSelectElement>) {
@@ -128,7 +134,7 @@
 						tabindex="0"
 						class="dropdown-content menu mt-[-4px] w-32 rounded-sm border-[1px] border-black/20 bg-base-100 p-2 pl-4 shadow"
 					>
-						{#each filterValueSet as value}
+						{#each currFilterOptions as value}
 							<label class="cursor-pointer">
 								<input
 									type="checkbox"
@@ -136,11 +142,8 @@
 									name="currFilterValues"
 									{value}
 									class="toggle toggle-xs mr-1 align-middle"
-									class:hidden={!currFilterOptions.includes(value)}
 								/>
-								<span class="label-text" class:hidden={!currFilterOptions.includes(value)}
-									>{value}</span
-								>
+								<span class="label-text">{value}</span>
 							</label>
 						{/each}
 					</ul>
@@ -201,7 +204,7 @@
 					<button
 						class="btn-ghost btn-sm btn m-1 block w-full text-left"
 						class:btn-active={currResponse === response}
-						on:click={() => (currResponse = response)}>{response}</button
+						on:click={handleResponseChange}>{response}</button
 					>
 				{/each}
 			</div>
