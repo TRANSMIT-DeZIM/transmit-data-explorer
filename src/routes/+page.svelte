@@ -2,8 +2,9 @@
 	import { unzipObj, type ChangeEventHandler } from "./utils";
 	import Icon from "svelte-icon/Icon.svelte";
 	import hamburger from "$lib/assets/hamburger.svg?raw";
+	import question from "$lib/assets/question.svg?raw";
 	import logo from "$lib/assets/logo.png";
-	import { data } from "$lib/data";
+	import { data, varLabels } from "$lib/data";
 	import { escape, not, op, table } from "arquero";
 	import type { Struct } from "arquero/dist/types/op/op-api";
 	import BarChart from "./BarChart.svelte";
@@ -28,7 +29,7 @@
 	let prevColourVar: string;
 
 	function handleResponseChange(event: ChangeEventHandler<HTMLButtonElement>) {
-		currResponse = event.currentTarget.textContent!;
+		currResponse = event.currentTarget.id;
 
 		prevFacetVar = currFacetVar;
 		currFacetVar = facetVars.includes(prevFacetVar) ? prevFacetVar : facetVars[0];
@@ -55,7 +56,7 @@
 		currColourVar = event.currentTarget.value;
 	}
 
-	let showPercentages = false;
+	let showPercentages = true;
 	$: if (currResponse === "plan_mig") showPercentages = false;
 
 	let chartData: any;
@@ -126,7 +127,9 @@
 				<div class="dropdown">
 					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-					<label tabindex="0" class="btn-ghost btn-sm btn m-1 mr-4 border-black/20 normal-case"
+					<label
+						tabindex="0"
+						class="btn-ghost no-animation btn-sm btn m-1 mr-4 border-black/20 normal-case"
 						>{currFilterVar}</label
 					>
 					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
@@ -188,7 +191,7 @@
 	<div class="drawer-side">
 		<label for="page-drawer" class="drawer-overlay" />
 
-		<div class="menu w-80 bg-base-100 p-4 pr-8 text-base-content">
+		<div class="menu w-96 bg-base-100 p-4 pr-8 text-base-content">
 			<div class="flex p-4">
 				<label
 					for="about-modal"
@@ -202,10 +205,28 @@
 			<div class="mt-4">
 				{#each responseVars as response}
 					<button
-						class="btn-ghost btn-sm btn m-1 block w-full text-left"
+						class="btn-ghost no-animation btn m-1 w-full justify-start"
 						class:btn-active={currResponse === response}
-						on:click={handleResponseChange}>{response}</button
+						id={response}
+						on:click={handleResponseChange}
 					>
+						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<div class="dropdown" on:click|stopPropagation>
+							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+							<!-- svelte-ignore a11y-label-has-associated-control -->
+							<label tabindex="0" class="btn-ghost btn-xs btn-circle btn mr-4 opacity-40">
+								<Icon data={question} />
+							</label>
+							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+							<div
+								tabindex="0"
+								class="dropdown-content rounded-box -ml-6 w-[360px] select-text bg-base-100 p-4 text-left font-normal normal-case leading-5 shadow-lg"
+							>
+								{@html varLabels[response].question}
+							</div>
+						</div>
+						{varLabels[response].label}
+					</button>
 				{/each}
 			</div>
 		</div>
