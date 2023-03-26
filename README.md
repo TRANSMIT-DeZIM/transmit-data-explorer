@@ -1,6 +1,6 @@
 # Interactive Web Application to Explore Data from the Research Project _Transnational Perspectives on Migration and Integration_ (TRANSMIT)
 
-👉 <https://long39ng.github.io/transmit-data-explorer/>
+👉📊 <https://long39ng.github.io/transmit-data-explorer/>
 
 [_Transnational Perspectives on Migration and Integration_ (TRANSMIT)](https://www.dezim-institut.de/projekte/projekt-detail/transnational-perspectives-on-migration-and-integration-transmit-7-13/) is an infrastructure project of the [DeZIM-Forschungsgemeinschaft (DeZIM FG)](https://www.dezim-institut.de/dezim-forschungsgemeinschaft/ueber-die-forschungsgemeinschaft/) and funded by the German Federal Ministry for Family Affairs, Senior Citizens, Women and Youth (BMFSFJ).
 The project studies the complex interplay between migration dynamics, migrants' well-being and integration processes by building a transnational data infrastructure that collects and links quantitative and qualitative data and knowledge on countries of origin, transit and destination.
