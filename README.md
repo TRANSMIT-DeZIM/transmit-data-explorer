@@ -1,38 +1,10 @@
-# create-svelte
+# Interactive Web Application to Explore Data from the Research Project _Transnational Perspectives on Migration and Integration_ (TRANSMIT)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+👉 <https://long39ng.github.io/transmit-data-explorer/>
 
-## Creating a project
+[_Transnational Perspectives on Migration and Integration_ (TRANSMIT)](https://www.dezim-institut.de/projekte/projekt-detail/transnational-perspectives-on-migration-and-integration-transmit-7-13/) is an infrastructure project of the [DeZIM-Forschungsgemeinschaft (DeZIM FG)](https://www.dezim-institut.de/dezim-forschungsgemeinschaft/ueber-die-forschungsgemeinschaft/) and funded by the German Federal Ministry for Family Affairs, Senior Citizens, Women and Youth (BMFSFJ).
+The project studies the complex interplay between migration dynamics, migrants' well-being and integration processes by building a transnational data infrastructure that collects and links quantitative and qualitative data and knowledge on countries of origin, transit and destination.
+In addition to Turkey and Lebanon, TRANSMIT collects data in Lebanon, Morocco, Italy, Nigeria, Senegal, the Gambia, and Germany.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+The data presented in the web application are part of an ongoing longitudinal survey of Syrian nationals in Turkey and Lebanon, collected by the BIM and the IAB in a joint research project on Transnational Migration and Integration (TRANSMIT).
+The study surveys a nationally representative sample of the respective Syrians in the two countries, as well as a sample of the host population living in the same neighborhoods. In the absence of reliable registry data, the surveys rely on stratified area sampling and random walk techniques.
