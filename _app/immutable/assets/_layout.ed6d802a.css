@@ -3176,11 +3176,6 @@ html {
 .overflow-x-hidden {
   overflow-x: hidden;
 }
-.truncate {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 .rounded-sm {
   border-radius: 0.125rem;
 }
@@ -3288,6 +3283,9 @@ html {
   }
 }
 @media (min-width: 1024px) {
+  .lg\:mt-2 {
+    margin-top: 0.5rem;
+  }
   .lg\:hidden {
     display: none;
   }
