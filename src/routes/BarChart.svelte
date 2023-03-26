@@ -62,9 +62,9 @@
 		},
 		grid: {
 			left: 80,
-			top: showLegend ? 120 : 60,
+			top: showLegend ? 112 : 52,
 			right: "4%",
-			bottom: showLegend ? 24 : 44,
+			bottom: showLegend ? 44 : 64,
 		},
 		xAxis: {
 			...optsData.xAxis,
@@ -72,7 +72,7 @@
 				hideOverlap: true,
 				width: 120,
 				interval: 0,
-				overflow: "truncate",
+				overflow: "break",
 			},
 		},
 		yAxis: {
@@ -94,7 +94,7 @@
 				yAxisIndex: [0],
 				filterMode: "none",
 				left: 12,
-				width: 24,
+				width: 20,
 				brushSelect: false,
 			},
 		],

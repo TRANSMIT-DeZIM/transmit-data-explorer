@@ -107,7 +107,7 @@
 			<h1 class="text-lg font-bold uppercase">{varLabels[currResponse].label}</h1>
 		</span>
 
-		<div class="mb-8">
+		<div class="mb-8 lg:mt-2">
 			<span>
 				<span class="label-text">Groups</span>
 				<select
@@ -124,7 +124,7 @@
 			</span>
 
 			<br class="sm:hidden" />
-			
+
 			<span>
 				<span class="label-text">Filter</span>
 				<div class="dropdown">
