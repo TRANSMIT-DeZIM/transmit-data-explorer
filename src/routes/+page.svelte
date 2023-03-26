@@ -56,8 +56,7 @@
 		currColourVar = event.currentTarget.value;
 	}
 
-	let showPercentages = true;
-	$: if (currResponse === "plan_mig") showPercentages = false;
+	let showRawCounts = false;
 
 	let chartData: any;
 	let yMax: number;
@@ -76,7 +75,7 @@
 							Math.round(((op.sum as any)(d.value * d.weight) / op.sum(d.weight)) * 100) / 100,
 				  });
 
-		if (showPercentages) {
+		if (!showRawCounts && currResponse !== "plan_mig") {
 			dataSummarised = dataSummarised
 				.groupby([`${currFacetVar}`, `${currColourVar}`])
 				.derive({ value: (d: Struct) => (d.value / op.sum(d.value)) * 100 || 0 });
@@ -105,14 +104,14 @@
 			<label for="page-drawer" class="btn-ghost drawer-button btn-square btn mr-4">
 				<Icon data={hamburger} />
 			</label>
-			<h1 class="text-lg font-bold uppercase">{currResponse}</h1>
+			<h1 class="text-lg font-bold uppercase">{varLabels[currResponse].label}</h1>
 		</span>
 
 		<div class="mb-8">
-			<label class="cursor-pointer">
+			<span>
 				<span class="label-text">Groups</span>
 				<select
-					class="select-bordered select select-sm m-1 mr-4"
+					class="select-bordered select select-sm m-1 mr-4 w-32"
 					bind:value={currFacetVar}
 					on:change={handleFacetChange}
 				>
@@ -120,16 +119,16 @@
 						<option value={facetBy}>{facetBy}</option>
 					{/each}
 				</select>
-			</label>
+			</span>
 
-			<label class="cursor-pointer">
+			<span>
 				<span class="label-text">Filter</span>
 				<div class="dropdown">
 					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 					<label
 						tabindex="0"
-						class="btn-ghost no-animation btn-sm btn m-1 mr-4 border-black/20 normal-case"
+						class="btn-ghost no-animation btn-sm btn m-1 mr-4 w-24 justify-start border-black/20 normal-case"
 						>{currFilterVar}</label
 					>
 					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
@@ -151,28 +150,30 @@
 						{/each}
 					</ul>
 				</div>
-			</label>
+			</span>
 
-			<br class="lg:hidden" />
+			<br class="md:hidden" />
 
-			<label class="cursor-pointer">
+			<span>
 				<span class="label-text">Colour</span>
 				<select
-					class="select-bordered select select-sm m-1 mr-4"
+					class="select-bordered select select-sm m-1 mr-4 w-32"
 					bind:value={currColourVar}
 					on:change={handleColourChange}
 				>
 					{#each colourVars as colourBy}
-						<option value={colourBy}>{colourBy}</option>
+						<option value={colourBy}>
+							{varLabels[colourBy].labelShort || varLabels[colourBy].label}
+						</option>
 					{/each}
 				</select>
-			</label>
+			</span>
 
 			<br class="lg:hidden" />
 
 			<label class={currResponse === "plan_mig" ? "hidden cursor-pointer" : "cursor-pointer"}>
-				<span class="label-text">Show percentages</span>
-				<input type="checkbox" class="toggle m-1 align-middle" bind:checked={showPercentages} />
+				<span class="label-text">Show raw counts</span>
+				<input type="checkbox" class="toggle m-1 align-middle" bind:checked={showRawCounts} />
 			</label>
 		</div>
 		<div class="grid max-h-[calc(100vh-72px)] grid-cols-1 gap-3 overflow-y-auto overflow-x-hidden">
@@ -180,7 +181,7 @@
 				<BarChart
 					name={facet}
 					dataObj={unzipObj(chartData[facet])}
-					{showPercentages}
+					showPercentages={currResponse !== "plan_mig" ? !showRawCounts : false}
 					xVar={currResponse !== "plan_mig" ? currResponse : currFacetVar}
 					{yMax}
 				/>
@@ -191,7 +192,7 @@
 	<div class="drawer-side">
 		<label for="page-drawer" class="drawer-overlay" />
 
-		<div class="menu w-96 bg-base-100 p-4 pr-8 text-base-content">
+		<div class="menu w-80 bg-base-100 p-4 pr-8 text-base-content sm:w-96">
 			<div class="flex p-4">
 				<label
 					for="about-modal"
@@ -205,7 +206,7 @@
 			<div class="mt-4">
 				{#each responseVars as response}
 					<button
-						class="btn-ghost no-animation btn m-1 w-full justify-start"
+						class="btn-ghost no-animation btn m-1 w-full justify-start text-left"
 						class:btn-active={currResponse === response}
 						id={response}
 						on:click={handleResponseChange}
@@ -220,12 +221,14 @@
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 							<div
 								tabindex="0"
-								class="dropdown-content rounded-box -ml-6 w-[360px] select-text bg-base-100 p-4 text-left font-normal normal-case leading-5 shadow-lg"
+								class="dropdown-content rounded-box -ml-6 w-72 select-text bg-base-100 p-4 text-left font-normal normal-case leading-5 shadow-lg sm:w-[360px]"
 							>
 								{@html varLabels[response].question}
 							</div>
 						</div>
-						{varLabels[response].label}
+						<span class="w-48 sm:w-64">
+							{varLabels[response].label}
+						</span>
 					</button>
 				{/each}
 			</div>
