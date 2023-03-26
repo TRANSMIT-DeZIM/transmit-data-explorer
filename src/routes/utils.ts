@@ -18,6 +18,10 @@ export type EChartsOptsData = {
 	};
 };
 
+export function firstNonNull<T>(obj: Record<string, T>, ...properties: string[]): T | undefined {
+	return properties.reduce((value: T | undefined, property) => value || obj[property], undefined);
+}
+
 export function unzipObj<T>(arr: Record<string, T>[]): Record<string, T[]> {
 	return arr.reduce((acc, curr) => {
 		return Object.entries(curr).reduce((acc, [key, value]) => {

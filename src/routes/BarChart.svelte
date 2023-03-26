@@ -8,8 +8,6 @@
 	export let xVar: string;
 	export let yMax: number;
 
-	const showLegend = name !== "Türkiye" && name !== "Host";
-
 	function makeEChartsData({ [xVar]: xValues, ...data }): EChartsOptsData {
 		const missingCats = ["missing", "refuse", "refuse/don't know"];
 		const missingStyle = { color: "#e3e3e3" };
@@ -35,6 +33,8 @@
 	}
 
 	$: optsData = makeEChartsData(dataObj);
+
+	$: showLegend = name !== "Türkiye" && name !== "Host" && optsData.series.length > 1;
 
 	$: options = {
 		title: {
@@ -98,11 +98,17 @@
 				brushSelect: false,
 			},
 		],
-		color: interpolateColours(
-			"#194939",
-			"#ed7d31",
-			optsData.series.filter((series) => !series.data.some((item) => "itemStyle" in item)).length
-		),
+		color:
+			optsData.series.length === 1
+				? name !== "Türkiye" && name !== "Host"
+					? "#194939"
+					: "#ed7d31"
+				: interpolateColours(
+						"#194939",
+						"#ed7d31",
+						optsData.series.filter((series) => !series.data.some((item) => "itemStyle" in item))
+							.length
+				  ),
 		textStyle: {
 			fontFamily:
 				'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji"',

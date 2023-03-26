@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { unzipObj, type ChangeEventHandler } from "./utils";
+	import { firstNonNull, unzipObj, type ChangeEventHandler } from "./utils";
 	import Icon from "svelte-icon/Icon.svelte";
 	import hamburger from "$lib/assets/hamburger.svg?raw";
 	import question from "$lib/assets/question.svg?raw";
@@ -24,8 +24,9 @@
 	let currFilterOptions = filterOptions[currFilterVar];
 	let currFilterValues = currFilterOptions;
 
-	let colourVars = ["agegr", "edu", "gender"].filter((x) => x !== currResponse);
-	let currColourVar = colourVars[0];
+	const allColourVars = ["agegr", "gender", "edu", "none"];
+	let availableColourVars = allColourVars.filter((x) => x !== currResponse);
+	let currColourVar = availableColourVars[0];
 	let prevColourVar: string;
 
 	function handleResponseChange(event: ChangeEventHandler<HTMLButtonElement>) {
@@ -37,9 +38,11 @@
 		currFilterVar = currFacetVar === "Rcountry" ? "stratad" : "Rcountry";
 		currFilterOptions = filterOptions[currFilterVar];
 
-		colourVars = ["agegr", "edu", "gender"].filter((x) => x !== currResponse);
+		availableColourVars = allColourVars.filter((x) => x !== currResponse);
 		prevColourVar = currColourVar;
-		currColourVar = colourVars.includes(prevColourVar) ? prevColourVar : colourVars[0];
+		currColourVar = availableColourVars.includes(prevColourVar)
+			? prevColourVar
+			: availableColourVars[0];
 	}
 
 	function handleFacetChange(event: ChangeEventHandler<HTMLSelectElement>) {
@@ -61,9 +64,13 @@
 	let chartData: any;
 	let yMax: number;
 	$: {
-		const dataFiltered = table(data[currResponse]).filter(
+		let dataFiltered = table(data[currResponse]).filter(
 			escape((d: Struct) => (op.includes as any)(currFilterValues, d[currFilterVar]))
 		);
+
+		if (currColourVar === "none") {
+			dataFiltered = dataFiltered.derive({ none: (_) => "" });
+		}
 
 		let dataSummarised =
 			currResponse !== "plan_mig"
@@ -117,7 +124,7 @@
 				>
 					{#each facetVars as facetBy}
 						<option value={facetBy}>
-							{varLabels[facetBy].labelShort || varLabels[facetBy].label}
+							{firstNonNull(varLabels[facetBy], "labelShort", "label")}
 						</option>
 					{/each}
 				</select>
@@ -134,7 +141,7 @@
 						tabindex="0"
 						class="btn-ghost no-animation btn-sm btn m-1 mr-4 w-24 justify-start border-black/20 normal-case"
 					>
-						{varLabels[currFilterVar].labelShort || varLabels[currFilterVar].label}
+						{firstNonNull(varLabels[currFilterVar], "labelShort", "label")}
 					</label>
 					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 					<ul
@@ -166,9 +173,11 @@
 					bind:value={currColourVar}
 					on:change={handleColourChange}
 				>
-					{#each colourVars as colourBy}
+					{#each availableColourVars as colourBy}
 						<option value={colourBy}>
-							{varLabels[colourBy].labelShort || varLabels[colourBy].label}
+							{colourBy === "none"
+								? "(None)"
+								: firstNonNull(varLabels[colourBy], "labelShort", "label")}
 						</option>
 					{/each}
 				</select>
