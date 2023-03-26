@@ -111,16 +111,20 @@
 			<span>
 				<span class="label-text">Groups</span>
 				<select
-					class="select-bordered select select-sm m-1 mr-4 w-32"
+					class="select-bordered select select-sm m-1 mr-4 w-28"
 					bind:value={currFacetVar}
 					on:change={handleFacetChange}
 				>
 					{#each facetVars as facetBy}
-						<option value={facetBy}>{facetBy}</option>
+						<option value={facetBy}>
+							{varLabels[facetBy].labelShort || varLabels[facetBy].label}
+						</option>
 					{/each}
 				</select>
 			</span>
 
+			<br class="sm:hidden" />
+			
 			<span>
 				<span class="label-text">Filter</span>
 				<div class="dropdown">
@@ -129,8 +133,9 @@
 					<label
 						tabindex="0"
 						class="btn-ghost no-animation btn-sm btn m-1 mr-4 w-24 justify-start border-black/20 normal-case"
-						>{currFilterVar}</label
 					>
+						{varLabels[currFilterVar].labelShort || varLabels[currFilterVar].label}
+					</label>
 					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 					<ul
 						tabindex="0"

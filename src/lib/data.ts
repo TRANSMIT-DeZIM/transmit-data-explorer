@@ -3,6 +3,14 @@ export const data: Record<string, any> = data0;
 
 export const varLabels: Record<string, { label: string; labelShort?: string; question?: string }> =
 	{
+		Rcountry: {
+			label: "Country",
+			labelShort: "Country",
+		},
+		stratad: {
+			label: "Strata",
+			labelShort: "Strata",
+		},
 		agegr: {
 			label: "Age group",
 			labelShort: "Age",

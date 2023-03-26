@@ -121,7 +121,7 @@
 		class:hidden={name === " "}
 		bind:checked={displayChart}
 	/>
-	<div class={showLegend ? "h-[460px]" : "h-[420px]"}>
+	<div class={showLegend ? "h-[400px] lg:h-[460px]" : "h-[360px] lg:h-[420px]"}>
 		<Chart {options} />
 	</div>
 </div>
