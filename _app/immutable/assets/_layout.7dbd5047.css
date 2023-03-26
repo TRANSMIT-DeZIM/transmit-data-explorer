@@ -3120,17 +3120,23 @@ html {
 .max-h-\[calc\(100vh-72px\)\] {
   max-height: calc(100vh - 72px);
 }
+.w-24 {
+  width: 6rem;
+}
 .w-32 {
   width: 8rem;
+}
+.w-48 {
+  width: 12rem;
 }
 .w-5\/6 {
   width: 83.333333%;
 }
-.w-96 {
-  width: 24rem;
+.w-72 {
+  width: 18rem;
 }
-.w-\[360px\] {
-  width: 360px;
+.w-80 {
+  width: 20rem;
 }
 .w-full {
   width: 100%;
@@ -3258,6 +3264,22 @@ html {
 .hover\:blur-sm:hover {
   --tw-blur: blur(4px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+@media (min-width: 640px) {
+  .sm\:w-64 {
+    width: 16rem;
+  }
+  .sm\:w-96 {
+    width: 24rem;
+  }
+  .sm\:w-\[360px\] {
+    width: 360px;
+  }
+}
+@media (min-width: 768px) {
+  .md\:hidden {
+    display: none;
+  }
 }
 @media (min-width: 1024px) {
   .lg\:hidden {
