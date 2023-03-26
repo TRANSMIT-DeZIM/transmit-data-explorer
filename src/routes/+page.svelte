@@ -235,7 +235,7 @@
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 							<div
 								tabindex="0"
-								class="dropdown-content rounded-box -ml-6 w-72 select-text bg-base-100 p-4 text-left font-normal normal-case leading-5 shadow-lg sm:w-[360px]"
+								class="dropdown-content rounded-box -ml-6 w-72 select-text bg-base-100 p-4 text-left text-sm font-normal normal-case shadow-lg sm:w-[360px]"
 							>
 								{@html varLabels[response].question}
 							</div>

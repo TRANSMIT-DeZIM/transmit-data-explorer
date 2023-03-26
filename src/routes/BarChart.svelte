@@ -34,7 +34,7 @@
 
 	$: optsData = makeEChartsData(dataObj);
 
-	$: showLegend = name !== "Türkiye" && name !== "Host" && optsData.series.length > 1;
+	$: showLegend = name !== "Türkiye" && name !== "Host";
 
 	$: options = {
 		title: {
@@ -48,10 +48,11 @@
 		legend: {
 			...optsData.legend,
 			type: "scroll",
-			show: showLegend,
+			show: showLegend && optsData.series.length > 1,
 			left: 0,
 			top: 0,
 			selectedMode: false,
+			textStyle: { fontSize: "0.875rem" },
 		},
 		tooltip: {
 			trigger: "axis",
@@ -59,18 +60,20 @@
 				type: "shadow",
 			},
 			valueFormatter: showPercentages ? (value: number) => value.toFixed(2) + "%" : undefined,
+			extraCssText: "max-width: 180px; white-space: pre-wrap",
 		},
 		grid: {
 			left: 80,
 			top: showLegend ? 112 : 52,
 			right: "4%",
-			bottom: showLegend ? 44 : 64,
+			bottom: showLegend ? 40 : 60,
 		},
 		xAxis: {
 			...optsData.xAxis,
 			axisLabel: {
 				hideOverlap: true,
-				width: 120,
+				fontSize: "0.875rem",
+				width: 148,
 				interval: 0,
 				overflow: "break",
 			},
@@ -79,6 +82,7 @@
 			max: Math.ceil(yMax),
 			axisLabel: {
 				formatter: showPercentages ? "{value}%" : "{value}",
+				fontSize: "0.875rem",
 			},
 		},
 		series: optsData.series,
@@ -100,9 +104,7 @@
 		],
 		color:
 			optsData.series.length === 1
-				? name !== "Türkiye" && name !== "Host"
-					? "#194939"
-					: "#ed7d31"
+				? "#194939"
 				: interpolateColours(
 						"#194939",
 						"#ed7d31",
@@ -128,6 +130,13 @@
 		bind:checked={displayChart}
 	/>
 	<div class={showLegend ? "h-[400px] lg:h-[460px]" : "h-[360px] lg:h-[420px]"}>
+		<div
+			class="absolute text-sm opacity-50 {showLegend && optsData.series.length === 1
+				? 'visible'
+				: 'invisible'}"
+		>
+			No variable mapped to colour
+		</div>
 		<Chart {options} />
 	</div>
 </div>
