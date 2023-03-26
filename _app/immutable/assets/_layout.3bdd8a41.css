@@ -3051,6 +3051,12 @@ html {
   border-bottom-left-radius: var(--rounded-box, 1rem);
   border-bottom-right-radius: var(--rounded-box, 1rem);
 }
+.visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
+}
 .absolute {
   position: absolute;
 }
@@ -3215,6 +3221,10 @@ html {
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
 .font-bold {
   font-weight: 700;
 }
@@ -3227,15 +3237,15 @@ html {
 .normal-case {
   text-transform: none;
 }
-.leading-5 {
-  line-height: 1.25rem;
-}
 .text-base-content {
   --tw-text-opacity: 1;
   color: hsl(var(--bc) / var(--tw-text-opacity));
 }
 .opacity-40 {
   opacity: 0.4;
+}
+.opacity-50 {
+  opacity: 0.5;
 }
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
