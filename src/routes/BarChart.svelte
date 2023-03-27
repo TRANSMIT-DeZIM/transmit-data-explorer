@@ -59,8 +59,9 @@
 			axisPointer: {
 				type: "shadow",
 			},
+			appendToBody: true,
 			valueFormatter: showPercentages ? (value: number) => value.toFixed(2) + "%" : undefined,
-			extraCssText: "max-width: 180px; white-space: pre-wrap",
+			extraCssText: "max-width: 192px; white-space: normal",
 		},
 		grid: {
 			left: 80,
