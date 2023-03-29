@@ -3126,9 +3126,6 @@ html {
 .max-h-\[calc\(100vh-72px\)\] {
   max-height: calc(100vh - 72px);
 }
-.w-24 {
-  width: 6rem;
-}
 .w-28 {
   width: 7rem;
 }
@@ -3155,6 +3152,9 @@ html {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.cursor-text {
+  cursor: text;
 }
 .select-text {
   -webkit-user-select: text;
