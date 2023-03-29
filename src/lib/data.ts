@@ -4,8 +4,8 @@ export const data: Record<string, any> = data0;
 export const varLabels: Record<string, { label: string; labelShort?: string; question?: string }> =
 	{
 		Rcountry: {
-			label: "Country",
-			labelShort: "Country",
+			label: "Country of residence",
+			labelShort: "Residence",
 		},
 		stratad: {
 			label: "Strata",
@@ -18,7 +18,7 @@ export const varLabels: Record<string, { label: string; labelShort?: string; que
 		},
 		gender: {
 			label: "Gender",
-			question: "What is your gender?",
+			question: 'What is your gender? ("Male", "Female" or "Other". "Other" category removed due to small cell sizes to protect respondents\' anonymity.)',
 		},
 		edu: {
 			label: "Educational attainment",

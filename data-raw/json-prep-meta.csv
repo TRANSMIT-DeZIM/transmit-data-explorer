@@ -3,8 +3,8 @@ agegr,n,NA,NA
 gender,n,NA,NA
 edu,n,NA,refuse
 health,_freq,NA,refuse
+employment,_freq,NA,refuse
 hhecon,_freq,NA,missing
+discr_nat,_freq,NA,refuse
 plan_mig,plan_mig,Number,refuse
 mig_desire_cntry,_freq,NA,refuse/don't know
-discr_nat,_freq,NA,refuse
-employment,_freq,NA,refuse

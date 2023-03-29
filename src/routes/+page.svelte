@@ -118,7 +118,7 @@
 			<span>
 				<span class="label-text">Groups</span>
 				<select
-					class="select-bordered select select-sm m-1 mr-4 w-28"
+					class="select-bordered select select-sm m-1 mr-4 w-32"
 					bind:value={currFacetVar}
 					on:change={handleFacetChange}
 				>
@@ -139,7 +139,7 @@
 					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 					<label
 						tabindex="0"
-						class="btn-ghost no-animation btn-sm btn m-1 mr-4 w-24 justify-start border-black/20 normal-case"
+						class="btn-ghost no-animation btn-sm btn m-1 mr-4 w-28 justify-start border-black/20 normal-case"
 					>
 						{firstNonNull(varLabels[currFilterVar], "labelShort", "label")}
 					</label>
@@ -235,7 +235,7 @@
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 							<div
 								tabindex="0"
-								class="dropdown-content rounded-box -ml-6 w-72 select-text bg-base-100 p-4 text-left text-sm font-normal normal-case shadow-lg sm:w-[360px]"
+								class="dropdown-content rounded-box -ml-6 w-72 cursor-text select-text bg-base-100 p-4 text-left text-sm font-normal normal-case shadow-lg sm:w-[360px]"
 							>
 								{@html varLabels[response].question}
 							</div>
