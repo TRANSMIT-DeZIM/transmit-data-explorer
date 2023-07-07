@@ -103,6 +103,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>TRANSMIT Data Explorer</title>
+</svelte:head>
+
 <div class="drawer-mobile drawer">
 	<input id="page-drawer" type="checkbox" class="drawer-toggle" />
 
@@ -227,6 +231,7 @@
 						on:click={handleResponseChange}
 					>
 						<!-- svelte-ignore a11y-click-events-have-key-events -->
+						<!-- svelte-ignore a11y-no-static-element-interactions -->
 						<div class="dropdown" on:click|stopPropagation>
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 							<!-- svelte-ignore a11y-label-has-associated-control -->
