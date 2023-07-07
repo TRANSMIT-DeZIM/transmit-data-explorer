@@ -130,7 +130,7 @@
 		class:hidden={name === " "}
 		bind:checked={displayChart}
 	/>
-	<div class={showLegend ? "h-[400px] lg:h-[460px]" : "h-[360px] lg:h-[420px]"}>
+	<div class={showLegend ? "h-[400px] lg:h-[440px]" : "h-[360px] lg:h-[400px]"}>
 		<div
 			class="absolute text-sm opacity-50 {showLegend && optsData.series.length === 1
 				? 'visible'

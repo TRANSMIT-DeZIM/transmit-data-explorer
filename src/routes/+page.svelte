@@ -12,13 +12,13 @@
 	const responseVars = Object.keys(data);
 	let currResponse = responseVars[0];
 
-	const facetVars = ["Rcountry", "stratad"];
+	const facetVars = ["Rcountry", "strata"];
 	let currFacetVar = facetVars[0];
 	let prevFacetVar: string;
 
 	const filterOptions: Record<string, string[]> = {
 		Rcountry: ["Lebanon", "Türkiye"],
-		stratad: ["Syrian", "Host"],
+		strata: ["Syrian", "Host"],
 	};
 	let currFilterVar = facetVars[1];
 	let currFilterOptions = filterOptions[currFilterVar];
@@ -35,7 +35,7 @@
 		prevFacetVar = currFacetVar;
 		currFacetVar = facetVars.includes(prevFacetVar) ? prevFacetVar : facetVars[0];
 
-		currFilterVar = currFacetVar === "Rcountry" ? "stratad" : "Rcountry";
+		currFilterVar = currFacetVar === "Rcountry" ? "strata" : "Rcountry";
 		currFilterOptions = filterOptions[currFilterVar];
 
 		availableColourVars = allColourVars.filter((x) => x !== currResponse);
@@ -49,7 +49,7 @@
 		prevFacetVar = currFacetVar;
 		currFacetVar = event.currentTarget.value;
 
-		currFilterVar = currFacetVar === "Rcountry" ? "stratad" : "Rcountry";
+		currFilterVar = currFacetVar === "Rcountry" ? "strata" : "Rcountry";
 		currFilterOptions = filterOptions[currFilterVar];
 		currFilterValues = currFilterOptions;
 	}
@@ -146,7 +146,7 @@
 					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 					<ul
 						tabindex="0"
-						class="dropdown-content menu mt-[-4px] w-32 rounded-sm border-[1px] border-black/20 bg-base-100 p-2 pl-4 shadow"
+						class="dropdown-content menu mt-[-4px] w-32 rounded-lg border-[1px] border-black/20 bg-base-100 p-2 pl-4 shadow"
 					>
 						{#each currFilterOptions as value}
 							<label class="cursor-pointer">
@@ -190,6 +190,7 @@
 				<input type="checkbox" class="toggle m-1 align-middle" bind:checked={showRawCounts} />
 			</label>
 		</div>
+
 		<div class="grid max-h-[calc(100vh-72px)] grid-cols-1 gap-3 overflow-y-auto overflow-x-hidden">
 			{#each Object.keys(chartData) as facet}
 				<BarChart
@@ -253,10 +254,10 @@
 	<div class="modal">
 		<div class="modal-box relative w-5/6 max-w-5xl">
 			<label for="about-modal" class="btn-sm btn-circle btn absolute right-2 top-2">✕</label>
-			<h3 class="text-lg font-bold">
+			<h2 class="text-xl font-bold">
 				Transnational Perspectives on Migration and Integration (TRANSMIT)
-			</h3>
-			<p class="py-4">
+			</h2>
+			<p class="pt-4">
 				<a
 					class="link"
 					target="_blank"
@@ -278,13 +279,34 @@
 				In addition to Turkey and Lebanon, TRANSMIT collects data in Lebanon, Morocco, Italy, Nigeria,
 				Senegal, the Gambia, and Germany.
 			</p>
-			<p class="py-4">
+			<p class="pt-4">
 				The data presented in the web application are part of an ongoing longitudinal survey of
 				Syrian nationals in Turkey and Lebanon, collected by the BIM and the IAB in a joint research
 				project on Transnational Migration and Integration (TRANSMIT). The study surveys a
 				nationally representative sample of the respective Syrians in the two countries, as well as
 				a sample of the host population living in the same neighborhoods. In the absence of reliable
 				registry data, the surveys rely on stratified area sampling and random walk techniques.
+			</p>
+			<p class="pt-4">
+				The web application was developed by <a
+					class="link"
+					target="_blank"
+					rel="noreferrer"
+					href="https://lo-ng.netlify.app/">Long Nguyen</a
+				>
+				(<a
+					class="link"
+					target="_blank"
+					rel="noreferrer"
+					href="https://github.com/TRANSMIT-DeZIM/transmit-data-explorer/">source code</a
+				>). The content is licensed under a
+				<a
+					class="link"
+					target="_blank"
+					rel="noreferrer"
+					href="https://creativecommons.org/licenses/by/4.0/"
+					>Creative Commons Attribution 4.0 International license</a
+				>.
 			</p>
 		</div>
 	</div>

@@ -7,7 +7,7 @@ export const varLabels: Record<string, { label: string; labelShort?: string; que
 			label: "Country of residence",
 			labelShort: "Residence",
 		},
-		stratad: {
+		strata: {
 			label: "Strata",
 			labelShort: "Strata",
 		},

@@ -6,5 +6,5 @@ health,_freq,NA,refuse
 employment,_freq,NA,refuse
 hhecon,_freq,NA,missing
 discr_nat,_freq,NA,refuse
-plan_mig,plan_mig,Number,refuse
+plan_mig,plan_mig,_freq,refuse
 mig_desire_cntry,_freq,NA,refuse/don't know

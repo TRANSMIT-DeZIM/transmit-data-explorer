@@ -11,7 +11,7 @@ data_raw <- fs::dir_ls("data-raw", glob = "*.RDS") |>
   x => tibble(name = names(x), data = x)
 
 non_outcome_counts <- data_raw$data[[1]] |>
-  count(Rcountry, stratad, gender, agegr, edu, wt = `_freq`)
+  count(Rcountry, strata, gender, agegr, edu, wt = `_freq`)
 
 data_raw2 <- reduce(
   c("agegr", "gender", "edu"),
@@ -46,10 +46,10 @@ json_prep_meta |>
     if (a$name != "plan_mig") {
       if (a$name %in% c("agegr", "edu", "gender")) {
         a$data <- a$data |>
-          complete(Rcountry, stratad, gender, agegr, edu)
+          complete(Rcountry, strata, gender, agegr, edu)
       } else {
         a$data <- a$data |>
-          complete(Rcountry, stratad, gender, agegr, edu, .data[[a$name]])
+          complete(Rcountry, strata, gender, agegr, edu, .data[[a$name]])
       }
     }
 
