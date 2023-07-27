@@ -107,12 +107,12 @@
 	<title>TRANSMIT Data Explorer</title>
 </svelte:head>
 
-<div class="drawer-mobile drawer">
+<div class="drawer drawer-mobile">
 	<input id="page-drawer" type="checkbox" class="drawer-toggle" />
 
 	<div class="drawer-content flex flex-col p-4">
 		<span class="mb-4 flex items-center before:text-xs before:content-[attr(data-tip)] lg:hidden">
-			<label for="page-drawer" class="btn-ghost drawer-button btn-square btn mr-4">
+			<label for="page-drawer" class="btn btn-square btn-ghost drawer-button mr-4">
 				<Icon data={hamburger} />
 			</label>
 			<h1 class="text-lg font-bold uppercase">{varLabels[currResponse].label}</h1>
@@ -122,7 +122,7 @@
 			<span>
 				<span class="label-text">Groups</span>
 				<select
-					class="select-bordered select select-sm m-1 mr-4 w-32"
+					class="select select-bordered select-sm m-1 mr-4 w-32"
 					bind:value={currFacetVar}
 					on:change={handleFacetChange}
 				>
@@ -143,7 +143,7 @@
 					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 					<label
 						tabindex="0"
-						class="btn-ghost no-animation btn-sm btn m-1 mr-4 w-28 justify-start border-black/20 normal-case"
+						class="btn btn-ghost btn-sm no-animation m-1 mr-4 w-28 justify-start border-black/20 normal-case"
 					>
 						{firstNonNull(varLabels[currFilterVar], "labelShort", "label")}
 					</label>
@@ -173,7 +173,7 @@
 			<span>
 				<span class="label-text">Colour</span>
 				<select
-					class="select-bordered select select-sm m-1 mr-4 w-32"
+					class="select select-bordered select-sm m-1 mr-4 w-32"
 					bind:value={currColourVar}
 					on:change={handleColourChange}
 				>
@@ -187,7 +187,7 @@
 				</select>
 			</span>
 
-			<br class="lg:hidden" />
+			<br class="mb-4 lg:hidden" />
 
 			<label class={currResponse === "plan_mig" ? "hidden cursor-pointer" : "cursor-pointer"}>
 				<span class="label-text">Show raw counts</span>
@@ -211,7 +211,7 @@
 	<div class="drawer-side">
 		<label for="page-drawer" class="drawer-overlay" />
 
-		<div class="menu w-80 bg-base-100 p-4 pr-8 text-base-content sm:w-96">
+		<div class="menu w-[92%] max-w-sm bg-base-100 p-4 pr-8 text-base-content sm:w-96">
 			<div class="flex p-4">
 				<label
 					for="about-modal"
@@ -225,7 +225,7 @@
 			<div class="mt-4">
 				{#each responseVars as response}
 					<button
-						class="btn-ghost no-animation btn m-1 w-full justify-start text-left"
+						class="btn btn-ghost no-animation m-1 w-full justify-start text-left"
 						class:btn-active={currResponse === response}
 						id={response}
 						on:click={handleResponseChange}
@@ -235,7 +235,7 @@
 						<div class="dropdown" on:click|stopPropagation>
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 							<!-- svelte-ignore a11y-label-has-associated-control -->
-							<label tabindex="0" class="btn-ghost btn-xs btn-circle btn mr-4 opacity-40">
+							<label tabindex="0" class="btn btn-circle btn-ghost btn-xs mr-4 opacity-40">
 								<Icon data={question} />
 							</label>
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
@@ -258,7 +258,7 @@
 	<input type="checkbox" id="about-modal" class="modal-toggle" />
 	<div class="modal">
 		<div class="modal-box relative w-5/6 max-w-5xl">
-			<label for="about-modal" class="btn-sm btn-circle btn absolute right-2 top-2">✕</label>
+			<label for="about-modal" class="btn btn-circle btn-sm absolute right-2 top-2">✕</label>
 			<h2 class="text-xl font-bold">
 				Transnational Perspectives on Migration and Integration (TRANSMIT)
 			</h2>
