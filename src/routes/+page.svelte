@@ -9,7 +9,9 @@
 	import type { Struct } from "arquero/dist/types/op/op-api";
 	import BarChart from "./BarChart.svelte";
 
-	const responseVars = Object.keys(data);
+	let yearData = data["2020"];
+
+	const responseVars = Object.keys(yearData);
 	let currResponse = responseVars[0];
 
 	const facetVars = ["Rcountry", "strata"];
@@ -28,6 +30,11 @@
 	let availableColourVars = allColourVars.filter((x) => x !== currResponse);
 	let currColourVar = availableColourVars[0];
 	let prevColourVar: string;
+
+	function handleYearChange(event: ChangeEventHandler<HTMLSelectElement>) {
+		yearData = data[event.currentTarget.value];
+		console.log(event.currentTarget.value);
+	}
 
 	function handleResponseChange(event: ChangeEventHandler<HTMLButtonElement>) {
 		currResponse = event.currentTarget.id;
@@ -64,7 +71,7 @@
 	let chartData: any;
 	let yMax: number;
 	$: {
-		let dataFiltered = table(data[currResponse]).filter(
+		let dataFiltered = table(yearData[currResponse]).filter(
 			escape((d: Struct) => (op.includes as any)(currFilterValues, d[currFilterVar]))
 		);
 
@@ -119,6 +126,14 @@
 		</span>
 
 		<div class="mb-8 lg:mt-2">
+			<span>
+				<span class="label-text">Year</span>
+				<select class="select select-bordered select-sm m-1 mr-4" on:change={handleYearChange}>
+					<option value="2020"> 2020 </option>
+					<option value="2022"> 2022 </option>
+				</select>
+			</span>
+
 			<span>
 				<span class="label-text">Groups</span>
 				<select
