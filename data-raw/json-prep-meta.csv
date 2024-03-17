@@ -1,10 +1,10 @@
 name,value,weight,missing_cat
 agegr,n,NA,NA
 gender,n,NA,NA
-edu,n,NA,refuse
-health,_freq,NA,refuse
-employment,_freq,NA,refuse
-hhecon,_freq,NA,missing
-discr_nat,_freq,NA,refuse
-plan_mig,plan_mig,_freq,refuse
-mig_desire_cntry,_freq,NA,refuse/don't know
+edu,n,NA,Refuse
+health,_freq,NA,Refuse
+employment,_freq,NA,Refuse
+hhecon,_freq,NA,Missing
+discr_nat,_freq,NA,Refuse
+plan_mig,plan_mig,_freq,Refuse
+mig_desire_cntry,_freq,NA,Refuse

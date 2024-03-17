@@ -12,5 +12,6 @@ vite.config.ts.timestamp-*
 .Rhistory
 .Rdata
 .httr-oauth
-data-raw/*.RDS
+data-raw/*.zip
+data-raw/*/*.RDS
 src/lib/data.json
