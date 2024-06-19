@@ -73,19 +73,22 @@ data_r <- data_r |>
           }
         }
 
-        a$data |>
-          arrange(pick(-any_of(c("value", "weight"))))
+        a$data
       }) |>
       set_names(json_prep_meta$name)
   })
 
 data_r$`2022` <- data_r$`2022` |>
   imap(\(data, name) {
-    bind_cols(imap(data, \(x, i) {
-      levels(x) <- levels(data_r$`2020`[[name]][[i]])
-      x
-    }))
+    imodify(data, \(x, i) {
+      if (is.factor(x)) {
+        fct_relevel(x, levels(data_r$`2020`[[name]][[i]]))
+      } else {
+        x
+      }
+    })
   })
 
 data_r |>
+  map_depth(2, \(x) arrange(x, pick(-any_of(c("value", "weight"))))) |>
   write_json("src/lib/data.json", dataframe = "columns", na = "null")
