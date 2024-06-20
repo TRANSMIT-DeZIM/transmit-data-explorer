@@ -9,7 +9,14 @@
 	import type { Struct } from "arquero/dist/types/op/op-api";
 	import BarChart from "./BarChart.svelte";
 
-	let yearData = data["2020"];
+	const waves = ["2020", "2022"];
+
+	const filterOptions: Record<string, string[]> = {
+		Rcountry: ["Lebanon", "Türkiye"],
+		strata: ["Syrian", "Host"],
+	};
+
+	let yearData = data[waves[0]];
 
 	const responseVars = Object.keys(yearData);
 	let currResponse = responseVars[0];
@@ -18,10 +25,6 @@
 	let currFacetVar = facetVars[0];
 	let prevFacetVar: string;
 
-	const filterOptions: Record<string, string[]> = {
-		Rcountry: ["Lebanon", "Türkiye"],
-		strata: ["Syrian", "Host"],
-	};
 	let currFilterVar = facetVars[1];
 	let currFilterOptions = filterOptions[currFilterVar];
 	let currFilterValues = currFilterOptions;
@@ -31,7 +34,7 @@
 	let currColourVar = availableColourVars[0];
 	let prevColourVar: string;
 
-	function handleYearChange(event: ChangeEventHandler<HTMLSelectElement>) {
+	function handleWaveChange(event: ChangeEventHandler<HTMLSelectElement>) {
 		yearData = data[event.currentTarget.value];
 		console.log(event.currentTarget.value);
 	}
@@ -128,9 +131,9 @@
 		<div class="mb-8 lg:mt-2">
 			<span>
 				<span class="label-text">Year</span>
-				<select class="select select-bordered select-sm m-1 mr-4" on:change={handleYearChange}>
-					<option value="2020"> 2020 </option>
-					<option value="2022"> 2022 </option>
+				<select class="select select-bordered select-sm m-1 mr-4" on:change={handleWaveChange}>
+					<option>{waves[0]}</option>
+					<option>{waves[1]}</option>
 				</select>
 			</span>
 
