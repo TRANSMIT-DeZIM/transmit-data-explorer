@@ -9,7 +9,7 @@
 	export let yMax: number;
 
 	function makeEChartsData({ [xVar]: xValues, ...data }): EChartsOptsData {
-		const missingCats = ["missing", "refuse", "refuse/don't know"];
+		const missingCats = ["Missing", "Refuse"];
 		const missingStyle = { color: "#e3e3e3" };
 
 		const series = Object.entries(data).map(([name, values]) => ({
