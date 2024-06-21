@@ -2,7 +2,7 @@
 	import { firstNonNull, unzipObj, type ChangeEventHandler } from "./utils";
 	import Icon from "svelte-icon/Icon.svelte";
 	import hamburger from "$lib/assets/hamburger.svg?raw";
-	import { data, varLabels } from "$lib/data";
+	import { dataMena, varLabels } from "$lib/data";
 	import { escape, not, op, table } from "arquero";
 	import type { Struct } from "arquero/dist/types/op/op-api";
 	import BarChart from "./BarChart.svelte";
@@ -16,7 +16,7 @@
 		strata: ["Syrian", "Host"],
 	};
 
-	let yearData = data[waves[0]];
+	let yearData = dataMena[waves[0]];
 
 	const responseVars = Object.keys(yearData);
 	let currResponse = responseVars[0];
@@ -35,7 +35,7 @@
 	let prevColourVar: string;
 
 	function handleWaveChange(event: ChangeEventHandler<HTMLSelectElement>) {
-		yearData = data[event.currentTarget.value];
+		yearData = dataMena[event.currentTarget.value];
 		console.log(event.currentTarget.value);
 	}
 

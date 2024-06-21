@@ -14,4 +14,4 @@ vite.config.ts.timestamp-*
 .httr-oauth
 data-raw/*.zip
 data-raw/*/
-src/lib/data.json
+src/lib/data*.json

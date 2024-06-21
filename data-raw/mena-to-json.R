@@ -8,7 +8,7 @@ str_capitalise_first <- function(string) {
 data_r <- c("2020", "2022") |>
   set_names() |>
   map(\(year) {
-    fs::dir_ls(paste0("data-raw/", year), glob = "*.RDS") |>
+    fs::dir_ls(paste0("data-raw/mena/", year), glob = "*.RDS") |>
       x => set_names(x, str_extract(x, "\\w+(?=\\.RDS)")) |>
       map(readRDS) |>
       map(mutate, across(where(is.factor), \(x) {
@@ -37,7 +37,7 @@ data_r <- data_r |>
     )
   })
 
-json_prep_meta <- read_csv("data-raw/json-prep-meta.csv", col_types = "c")
+json_prep_meta <- read_csv("data-raw/mena-json-prep-meta.csv", col_types = "c")
 
 data_r <- data_r |>
   map(\(year_df) {
@@ -91,4 +91,4 @@ data_r$`2022` <- data_r$`2022` |>
 
 data_r |>
   map_depth(2, \(x) arrange(x, pick(-any_of(c("value", "weight"))))) |>
-  write_json("src/lib/data.json", dataframe = "columns", na = "null")
+  write_json("src/lib/data-mena.json", dataframe = "columns", na = "null")
