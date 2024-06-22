@@ -107,6 +107,14 @@
 					{/each}
 				</select>
 			</span>
+
+			<br class="md:hidden" />
+
+			<span
+				class={currResponse === "agegr" || currColourVar === "agegr" ? "label-text ml-2" : "hidden"}
+			>
+				* Includes respondents aged 25-35 in Gambia and Senegal
+			</span>
 		</div>
 
 		<div class="grid max-h-[calc(100vh-72px)] grid-cols-1 gap-3 overflow-y-auto overflow-x-hidden">

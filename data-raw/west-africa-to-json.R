@@ -37,7 +37,7 @@ fs::dir_ls("data-raw/west-africa/") |>
     )
   ) |>
   mutate(
-    agegr = factor(if_else(agegr == "25-35", "25-34", agegr)),
+    agegr = factor(if_else(startsWith(agegr, "25"), "25-34*", agegr)),
     gender = fct_relevel(if_else(gender == 0, "Male", "Female"), "Male"),
     edu = fct_relevel(if_else(startsWith(edu, "Don"), NA, edu), c(
       "Never attended school",
