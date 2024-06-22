@@ -34,7 +34,7 @@
 
 	$: optsData = makeEChartsData(dataObj);
 
-	$: showLegend = name !== "Türkiye" && name !== "Host";
+	$: showLegend = ["Lebanon", "Syrian", "Gambia"].includes(name);
 
 	$: options = {
 		title: {
@@ -99,7 +99,7 @@
 				yAxisIndex: [0],
 				filterMode: "none",
 				left: 12,
-				width: 20,
+				width: 16,
 				brushSelect: false,
 			},
 		],
