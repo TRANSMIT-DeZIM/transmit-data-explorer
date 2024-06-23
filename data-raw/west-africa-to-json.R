@@ -44,6 +44,7 @@ fs::dir_ls("data-raw/west-africa/") |>
       "Left school without high school certificate",
       "High school certificate",
       "Vocational training",
+      "Attended university",
       "Bachelor degree or higher"
     )),
     employment = fct_relevel(employment, c(
