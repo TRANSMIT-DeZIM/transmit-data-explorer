@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { ChangeEventHandler } from "./utils";
 	import { createEventDispatcher } from "svelte";
+	import { page } from "$app/stores";
 	import Icon from "svelte-icon/Icon.svelte";
 	import question from "$lib/assets/question.svg?raw";
 	import logo from "$lib/assets/logo.png";
@@ -20,7 +21,7 @@
 	<label for="page-drawer" class="drawer-overlay" />
 
 	<div class="menu w-[92%] max-w-sm bg-base-100 p-4 pr-8 text-base-content sm:w-96">
-		<div class="flex p-4">
+		<div class="m-4 mb-0 flex">
 			<label
 				for="about-modal"
 				class="tooltip tooltip-bottom cursor-pointer"
@@ -28,6 +29,19 @@
 			>
 				<img class="hover:blur-sm" src={logo} alt="TRANSMIT Project logo" />
 			</label>
+		</div>
+
+		<div class="dropdown flex justify-center">
+			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+			<!-- svelte-ignore a11y-label-has-associated-control -->
+			<label tabindex="0" class="btn btn-ghost btn-sm"
+				>{$page.url.pathname === "/" ? "MENA" : "West Africa"}</label
+			>
+			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+			<ul tabindex="0" class="dropdown-content menu rounded-box w-36 bg-base-100 p-2 shadow">
+				<li><a href="/">MENA</a></li>
+				<li><a href="/west-africa">West Africa</a></li>
+			</ul>
 		</div>
 
 		<div class="mt-4">
@@ -40,7 +54,7 @@
 				>
 					<!-- svelte-ignore a11y-click-events-have-key-events -->
 					<!-- svelte-ignore a11y-no-static-element-interactions -->
-					<div class="dropdown" on:click|stopPropagation>
+					<div class="dropdown dropdown-hover" on:click|stopPropagation>
 						<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 						<!-- svelte-ignore a11y-label-has-associated-control -->
 						<label tabindex="0" class="btn btn-circle btn-ghost btn-xs mr-4 opacity-40">
