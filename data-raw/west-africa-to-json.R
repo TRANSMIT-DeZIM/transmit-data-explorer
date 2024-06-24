@@ -39,14 +39,19 @@ fs::dir_ls("data-raw/west-africa/") |>
   mutate(
     agegr = factor(if_else(startsWith(agegr, "25"), "25-34*", agegr)),
     gender = fct_relevel(if_else(gender == 0, "Male", "Female"), "Male"),
-    edu = fct_relevel(if_else(startsWith(edu, "Don"), NA, edu), c(
-      "Never attended school",
-      "Left school without high school certificate",
-      "High school certificate",
-      "Vocational training",
-      "Attended university",
-      "Bachelor degree or higher"
-    )),
+    edu = case_match(
+      edu,
+      "Don’t know [INTERVIEWER: Don't read out]" ~ NA,
+      c("Vocational training", "Attended university") ~ "Vocational training/Attended university",
+      .default = edu
+    ) |>
+      fct_relevel(c(
+        "Never attended school",
+        "Left school without high school certificate",
+        "High school certificate",
+        "Vocational training/Attended university",
+        "Bachelor degree or higher"
+      )),
     employment = fct_relevel(employment, c(
       "Not employed",
       "Civil servant",
@@ -80,7 +85,7 @@ fs::dir_ls("data-raw/west-africa/") |>
   ) |>
   mutate(
     Rcountry = case_when(
-      str_detect(file, "GAM") ~ "Gambia",
+      str_detect(file, "GAM") ~ "The Gambia",
       str_detect(file, "NIG") ~ "Nigeria",
       str_detect(file, "SEN") ~ "Senegal",
     ),

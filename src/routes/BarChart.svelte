@@ -34,7 +34,7 @@
 
 	$: optsData = makeEChartsData(dataObj);
 
-	$: showLegend = ["Lebanon", "Syrian", "Gambia"].includes(name);
+	$: showLegend = ["Lebanon", "Syrian", "Nigeria"].includes(name);
 
 	$: options = {
 		title: {
