@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { ChangeEventHandler } from "./utils";
 	import { createEventDispatcher } from "svelte";
-	import { page } from "$app/stores";
 	import Icon from "svelte-icon/Icon.svelte";
 	import question from "$lib/assets/question.svg?raw";
 	import logo from "$lib/assets/logo.png";
+	import { base } from "$app/paths";
+	import { page } from "$app/stores";
 
 	export let responseVars;
 	export let varLabels;
@@ -35,12 +36,12 @@
 			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<label tabindex="0" class="btn btn-ghost btn-sm"
-				>{$page.url.pathname === "/" ? "MENA" : "West Africa"}</label
+				>{$page.url.pathname === `${base}/` ? "MENA" : "West Africa"}</label
 			>
 			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 			<ul tabindex="0" class="dropdown-content menu rounded-box w-36 bg-base-100 p-2 shadow">
-				<li><a href="/">MENA</a></li>
-				<li><a href="/west-africa">West Africa</a></li>
+				<li><a href="{base}/">MENA</a></li>
+				<li><a href="{base}/west-africa">West Africa</a></li>
 			</ul>
 		</div>
 
