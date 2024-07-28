@@ -113,7 +113,7 @@
 			<span
 				class={currResponse === "agegr" || currColourVar === "agegr" ? "label-text ml-2" : "hidden"}
 			>
-				* Includes respondents aged 25-35 in Gambia and Senegal
+				* The '25-34' category includes respondents aged 25-35 in Gambia and Senegal
 			</span>
 		</div>
 

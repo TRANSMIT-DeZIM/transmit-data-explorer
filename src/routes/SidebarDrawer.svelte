@@ -16,6 +16,8 @@
 	function forwardResponse(event: ChangeEventHandler<HTMLButtonElement>) {
 		dispatch("responseChange", { response: event.currentTarget.id });
 	}
+
+	$: isWestAfrica = $page.url.pathname.startsWith(`${base}/west-africa`);
 </script>
 
 <div class="drawer-side">
@@ -36,12 +38,12 @@
 			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<label tabindex="0" class="btn btn-ghost btn-sm"
-				>{$page.url.pathname === `${base}/` ? "MENA" : "West Africa"}</label
+				>{isWestAfrica ? "West Africa" : "MENA"}</label
 			>
 			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 			<ul tabindex="0" class="dropdown-content menu rounded-box w-36 bg-base-100 p-2 shadow">
-				<li><a href="{base}/">MENA</a></li>
-				<li><a href="{base}/west-africa">West Africa</a></li>
+				<li class:disabled={!isWestAfrica}><a href="{base}/">MENA</a></li>
+				<li class:disabled={isWestAfrica}><a href="{base}/west-africa">West Africa</a></li>
 			</ul>
 		</div>
 
