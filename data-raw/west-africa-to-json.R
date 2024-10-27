@@ -18,9 +18,8 @@ str_capitalise_first <- function(string) {
   )
 }
 
-read_csv("data-raw/west-africa/SENGAM1_subset.csv") |>
-  group_split(senegambia_inv, .keep = FALSE) |>
-  discard_at(3) |>
+read_csv("data-raw/west-africa/SENGAM1_subset_NEW.csv") |>
+  group_split(senegambia, .keep = FALSE) |>
   set_names(c("SEN", "GAM")) |>
   iwalk(\(data, country) {
     data |>
