@@ -1,4 +1,5 @@
 <script>
+	import { base } from "$app/paths";
 	import logo from "$lib/assets/logo.png";
 	import mapBase from "$lib/assets/map-base.svg";
 	import mapMena from "$lib/assets/map-mena.svg";
@@ -38,7 +39,7 @@
 					map = mapBase;
 				}}
 				on:click={() => {
-					window.location.href = "/mena";
+					window.location.href = `${base}/mena`;
 				}}>MENA</button
 			>
 			<button
@@ -50,7 +51,7 @@
 					map = mapBase;
 				}}
 				on:click={() => {
-					window.location.href = "/west-africa";
+					window.location.href = `${base}/west-africa`;
 				}}>West Africa</button
 			>
 		</div>
