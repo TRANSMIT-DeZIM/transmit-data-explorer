@@ -25,26 +25,32 @@
 
 	<div class="menu w-[92%] max-w-sm bg-base-100 p-4 pr-8 text-base-content sm:w-96">
 		<div class="m-4 mb-0 flex">
+			<a href="{base}/">
+				<img src={logo} alt="TRANSMIT Project logo" />
+			</a>
+		</div>
+
+		<div class="flex items-center justify-center">
+			<div class="dropdown flex justify-center">
+				<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+				<!-- svelte-ignore a11y-label-has-associated-control -->
+				<label tabindex="0" class="btn btn-ghost btn-sm text-lg"
+					>{isWestAfrica ? "West Africa" : "MENA"}</label
+				>
+				<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+				<ul tabindex="0" class="dropdown-content menu rounded-box w-40 bg-base-100 p-2 shadow">
+					<li class:disabled={!isWestAfrica}><a href="{base}/mena">MENA</a></li>
+					<li class:disabled={isWestAfrica}><a href="{base}/west-africa">West Africa</a></li>
+				</ul>
+			</div>
+
 			<label
 				for="about-modal"
 				class="tooltip tooltip-bottom cursor-pointer"
 				data-tip="About the project"
 			>
-				<img class="hover:blur-sm" src={logo} alt="TRANSMIT Project logo" />
+				<sup>?</sup>
 			</label>
-		</div>
-
-		<div class="dropdown flex justify-center">
-			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-			<!-- svelte-ignore a11y-label-has-associated-control -->
-			<label tabindex="0" class="btn btn-ghost btn-sm"
-				>{isWestAfrica ? "West Africa" : "MENA"}</label
-			>
-			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-			<ul tabindex="0" class="dropdown-content menu rounded-box w-36 bg-base-100 p-2 shadow">
-				<li class:disabled={!isWestAfrica}><a href="{base}/">MENA</a></li>
-				<li class:disabled={isWestAfrica}><a href="{base}/west-africa">West Africa</a></li>
-			</ul>
 		</div>
 
 		<div class="mt-4">

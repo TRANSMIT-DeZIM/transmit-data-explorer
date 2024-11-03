@@ -137,5 +137,5 @@
 		on:responseChange={handleResponseChange}
 	/>
 
-	<AboutModal />
+	<AboutModal which="West Africa" />
 </div>
