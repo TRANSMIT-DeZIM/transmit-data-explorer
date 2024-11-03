@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="./favicon.png" />
-		<meta name="viewport" content="width=device-width" />
-		
-		<link href="./_app/immutable/assets/0.da509175.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.568f2546.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/scheduler.cb035a1f.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.b9e1dedf.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.169eee33.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.ab256b4e.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.b7ed5b32.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.12467bc4.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/AboutModal.80c94a42.js"><title>TRANSMIT Data Explorer</title><!-- HEAD_svelte-jb16f3_START --><!-- HEAD_svelte-jb16f3_END -->
-	</head>
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">   <div class="hero min-h-screen"><div class="hero-content text-center"><div class="max-w-xl"><label for="about-modal" class="tooltip tooltip-top cursor-pointer py-4" data-tip="About the project" data-svelte-h="svelte-kz9fvl"><img class="hover:blur-sm" src="/transmit-data-explorer/_app/immutable/assets/logo.a68b8dcf.png" alt="TRANSMIT"></label> <h1 class="text-4xl font-bold" data-svelte-h="svelte-q600c3">Data Explorer</h1> <img class="py-8" src="/transmit-data-explorer/_app/immutable/assets/map-base.3df116e4.svg" alt="World map cropped down to include MENA and West African countries"> <button class="btn btn-primary btn-wide m-1 text-xl" data-svelte-h="svelte-3rt84d">MENA</button> <button class="btn btn-primary btn-wide m-1 text-xl" data-svelte-h="svelte-1scbev8">West Africa</button></div></div></div> <input type="checkbox" id="about-modal" class="modal-toggle"> <div class="modal"><div class="modal-box relative w-5/6 max-w-5xl text-left"><label for="about-modal" class="btn btn-circle btn-sm absolute right-2 top-2" data-svelte-h="svelte-1973mbv">✕</label> <h2 class="py-4 text-xl font-bold"><span data-svelte-h="svelte-1socyhc">Perspectives on Migration and Integration (TRANSMIT)</span> <span class="hidden" data-svelte-h="svelte-1k473oz">— MENA</span> <span class="hidden" data-svelte-h="svelte-1eygioy">— West-Africa</span></h2> <div class="py-4" data-svelte-h="svelte-fw1p62"><a class="link" target="_blank" rel="noreferrer" href="https://www.dezim-institut.de/projekte/projekt-detail/transnational-perspectives-on-migration-and-integration-transmit-7-13/">Transnational Perspectives on Migration and Integration (TRANSMIT)</a>
+import{s as U,f as i,a as g,g as r,c as m,h as R,B as k,d as x,j as o,W as c,i as z,x as t,y as K}from"./scheduler.cb035a1f.js";import{S as J,i as O}from"./index.ab256b4e.js";const ee=""+new URL("../assets/logo.a68b8dcf.png",import.meta.url).href;function Y(w){let l,I,d,e,v,W="✕",M,h,S,F="Perspectives on Migration and Integration (TRANSMIT)",_,b,G="— MENA",C,y,j="— West-Africa",N,p,B=`<a class="link" target="_blank" rel="noreferrer" href="https://www.dezim-institut.de/projekte/projekt-detail/transnational-perspectives-on-migration-and-integration-transmit-7-13/">Transnational Perspectives on Migration and Integration (TRANSMIT)</a>
 			collects data in Lebanon, Türkiye, Morocco, Italy, Nigeria, Senegal, the Gambia, and Germany. TRANSMIT
 			is a migration research project of the
 			<a class="link" target="_blank" rel="noreferrer" href="https://www.dezim-institut.de/dezim-forschungsgemeinschaft/ueber-die-forschungsgemeinschaft/">DeZIM-Forschungsgemeinschaft (DeZIM FG)</a>
@@ -30,7 +12,7 @@
 			<a class="link" target="_blank" rel="noreferrer" href="https://www.wzb.eu/de/forschung/migration-und-diversitaet/migration-integration-transnationalisierung/projekte/transmit-transnational-perspectives-on-migrant-integration">Berlin Social Science Center (WZB)</a>. The project studies the complex interplay between migration dynamics, migrants&#39; well-being
 			and integration processes by building a transnational data infrastructure that collects and
 			links quantitative and qualitative data and knowledge on countries of origin, transit and
-			destination.</div> <div class="py-4 hidden" data-svelte-h="svelte-m0tzgm"><p>The data presented in the MENA TRANSMIT Data Explorer was drawn from the first (Türkiye) and
+			destination.`,E,u,H=`<p>The data presented in the MENA TRANSMIT Data Explorer was drawn from the first (Türkiye) and
 				second (Lebanon) wave of an ongoing longitudinal survey of Syrians living in Lebanon and
 				Turkey collected in face-to-face interviews between September 2020 and February 2021 as part
 				of the TRANSMIT research project. The study aims at providing a nationally representative
@@ -73,7 +55,7 @@
 				45-60 min. Participants were free to pause the interview at any time, skip individual
 				questions, or stop the interview.</p> <h3 class="pb-2 pt-4 text-lg font-bold">Data Processing</h3> <p>The data provided in the Data Explorer have been cleaned of outlier observations based on
 				standardized criteria and are fully processed. Prospectively, follow-up Waves of the survey
-				will be added to the Data Explorer as they become available.</p></div> <div class="py-4 hidden" data-svelte-h="svelte-1xqzt13"><p>The data presented in the West Africa TRANSMIT Data Explorer is drawn from the two waves of
+				will be added to the Data Explorer as they become available.</p>`,L,f,V=`<p>The data presented in the West Africa TRANSMIT Data Explorer is drawn from the two waves of
 				longitudinal surveys conducted in Senegal, the Gambia and Nigeria, respectively. The surveys
 				were conducted as face-to-face interviews as part of the TRANSMIT research project, between
 				2019 and 2023. The surveys aim at providing regionally (Senegal and Nigeria) and nationally
@@ -109,35 +91,6 @@
 				premises of the interviewee, which was determined by the interviewee him-/herself.
 				Interviews lasted on average between 45-60 min. Participants were free to pause the
 				interview at any time, skip individual questions, or stop the interview.</p> <h3 class="pb-2 pt-4 text-lg font-bold">Data Processing</h3> <p>The data provided in the Data Explorer have been cleaned of outlier observations based on
-				standardized criteria and are fully processed.</p></div> <hr> <div class="py-4" data-svelte-h="svelte-dc5qr2">The web application was developed by <a class="link" target="_blank" rel="noreferrer" href="https://lo-ng.netlify.app/">Long Nguyen</a>
+				standardized criteria and are fully processed.</p>`,D,P,q,T,Z=`The web application was developed by <a class="link" target="_blank" rel="noreferrer" href="https://lo-ng.netlify.app/">Long Nguyen</a>
 			(<a class="link" target="_blank" rel="noreferrer" href="https://github.com/TRANSMIT-DeZIM/transmit-data-explorer/">source code</a>). The content is licensed under a
-			<a class="link" target="_blank" rel="noreferrer" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.</div></div></div> 
-			
-			<script>
-				{
-					__sveltekit_zr62rg = {
-						assets: "/transmit-data-explorer",
-						base: new URL(".", location).pathname.slice(0, -1),
-						env: {}
-					};
-
-					const element = document.currentScript.parentElement;
-
-					const data = [null,null];
-
-					Promise.all([
-						import("./_app/immutable/entry/start.568f2546.js"),
-						import("./_app/immutable/entry/app.169eee33.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element, {
-							node_ids: [0, 2],
-							data,
-							form: null,
-							error: null
-						});
-					});
-				}
-			</script>
-		</div>
-	</body>
-</html>
+			<a class="link" target="_blank" rel="noreferrer" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International license</a>.`;return{c(){l=i("input"),I=g(),d=i("div"),e=i("div"),v=i("label"),v.textContent=W,M=g(),h=i("h2"),S=i("span"),S.textContent=F,_=g(),b=i("span"),b.textContent=G,C=g(),y=i("span"),y.textContent=j,N=g(),p=i("div"),p.innerHTML=B,E=g(),u=i("div"),u.innerHTML=H,L=g(),f=i("div"),f.innerHTML=V,D=g(),P=i("hr"),q=g(),T=i("div"),T.innerHTML=Z,this.h()},l(a){l=r(a,"INPUT",{type:!0,id:!0,class:!0}),I=m(a),d=r(a,"DIV",{class:!0});var s=R(d);e=r(s,"DIV",{class:!0});var n=R(e);v=r(n,"LABEL",{for:!0,class:!0,"data-svelte-h":!0}),k(v)!=="svelte-1973mbv"&&(v.textContent=W),M=m(n),h=r(n,"H2",{class:!0});var A=R(h);S=r(A,"SPAN",{"data-svelte-h":!0}),k(S)!=="svelte-1socyhc"&&(S.textContent=F),_=m(A),b=r(A,"SPAN",{"data-svelte-h":!0}),k(b)!=="svelte-1k473oz"&&(b.textContent=G),C=m(A),y=r(A,"SPAN",{"data-svelte-h":!0}),k(y)!=="svelte-1eygioy"&&(y.textContent=j),A.forEach(x),N=m(n),p=r(n,"DIV",{class:!0,"data-svelte-h":!0}),k(p)!=="svelte-fw1p62"&&(p.innerHTML=B),E=m(n),u=r(n,"DIV",{class:!0,"data-svelte-h":!0}),k(u)!=="svelte-m0tzgm"&&(u.innerHTML=H),L=m(n),f=r(n,"DIV",{class:!0,"data-svelte-h":!0}),k(f)!=="svelte-1xqzt13"&&(f.innerHTML=V),D=m(n),P=r(n,"HR",{}),q=m(n),T=r(n,"DIV",{class:!0,"data-svelte-h":!0}),k(T)!=="svelte-dc5qr2"&&(T.innerHTML=Z),n.forEach(x),s.forEach(x),this.h()},h(){o(l,"type","checkbox"),o(l,"id","about-modal"),o(l,"class","modal-toggle"),o(v,"for","about-modal"),o(v,"class","btn btn-circle btn-sm absolute right-2 top-2"),c(b,"hidden",w[0]!=="MENA"),c(y,"hidden",w[0]!=="West Africa"),o(h,"class","py-4 text-xl font-bold"),o(p,"class","py-4"),c(p,"hidden",w[0]!=="TRANSMIT"),o(u,"class","py-4"),c(u,"hidden",w[0]!=="MENA"),o(f,"class","py-4"),c(f,"hidden",w[0]!=="West Africa"),o(T,"class","py-4"),o(e,"class","modal-box relative w-5/6 max-w-5xl text-left"),o(d,"class","modal")},m(a,s){z(a,l,s),z(a,I,s),z(a,d,s),t(d,e),t(e,v),t(e,M),t(e,h),t(h,S),t(h,_),t(h,b),t(h,C),t(h,y),t(e,N),t(e,p),t(e,E),t(e,u),t(e,L),t(e,f),t(e,D),t(e,P),t(e,q),t(e,T)},p(a,[s]){s&1&&c(b,"hidden",a[0]!=="MENA"),s&1&&c(y,"hidden",a[0]!=="West Africa"),s&1&&c(p,"hidden",a[0]!=="TRANSMIT"),s&1&&c(u,"hidden",a[0]!=="MENA"),s&1&&c(f,"hidden",a[0]!=="West Africa")},i:K,o:K,d(a){a&&(x(l),x(I),x(d))}}}function Q(w,l,I){let{which:d}=l;return w.$$set=e=>{"which"in e&&I(0,d=e.which)},[d]}class te extends J{constructor(l){super(),O(this,l,Q,Y,U,{which:0})}}export{te as A,ee as l};
