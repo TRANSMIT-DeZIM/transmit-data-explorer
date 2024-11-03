@@ -132,8 +132,8 @@
 	/>
 	<div
 		class={showLegend
-			? "h-[400px] w-full sm:w-[calc(100vw-28rem)] lg:h-[440px]"
-			: "h-[360px] w-full sm:w-[calc(100vw-28rem)] lg:h-[400px]"}
+			? "h-[400px] w-full lg:h-[440px] lg:w-[calc(100vw-28rem)]"
+			: "h-[360px] w-full lg:h-[400px] lg:w-[calc(100vw-28rem)]"}
 	>
 		<div
 			class="absolute text-sm opacity-50 {showLegend && optsData.series.length === 1
