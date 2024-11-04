@@ -30,7 +30,7 @@
 				>DeZIM-Forschungsgemeinschaft (DeZIM FG)</a
 			>
 			and funded by the German Federal Ministry for Family Affairs, Senior Citizens, Women and Youth
-			(BMFSFJ). The project is carried out in cooperation of the
+			(BMFSFJ). The project is carried out in cooperation with the
 			<a class="link" target="_blank" rel="noreferrer" href="https://www.bim.hu-berlin.de/"
 				>Berliner Institut für empirische Integrations- und Migrationsforschung (BIM)</a
 			>, the
@@ -64,19 +64,19 @@
 			<p>
 				The data presented in the MENA TRANSMIT Data Explorer was drawn from the first (Türkiye) and
 				second (Lebanon) wave of an ongoing longitudinal survey of Syrians living in Lebanon and
-				Turkey collected in face-to-face interviews between September 2020 and February 2021 as part
-				of the TRANSMIT research project. The study aims at providing a nationally representative
-				sample of the respective Syrian populations in the two countries, as well as a sample of the
-				host population living in the same neighborhoods and covers a broad set of questions on
-				respondent's family structure, demographic and psychological characteristics, migration
-				experiences, economic, social and physical well-being. Sampling was conducted via multilevel
-				area sampling and random walks.
+				Türkiye collected in face-to-face interviews between September 2020 and February 2021 as
+				part of the TRANSMIT research project. The study aims at providing a nationally
+				representative sample of the respective Syrian populations in the two countries, as well as
+				a sample of the host population living in the same neighborhoods and covers a broad set of
+				questions on respondent's family structure, demographic and psychological characteristics,
+				migration experiences, economic, social and physical well-being. Sampling was conducted via
+				multilevel area sampling and random walks.
 			</p>
 			<h3 class="pb-2 pt-4 text-lg font-bold">Baseline Sampling</h3>
 			<p>
-				The baseline survey in Lebanon took place in 2019 and in Turkey in 2020. In each case, the
+				The baseline survey in Lebanon took place in 2019 and in Türkiye in 2020. In each case, the
 				study population included all individuals with a minimum age of 15 years who were in Lebanon
-				and Turkey, respectively, at the time of this initial survey and who were living in
+				and Türkiye, respectively, at the time of this initial survey and who were living in
 				non-segregated institutions (e.g., prison, barracks). The survey was stratified by country
 				of birth of the head of household, such that 50% of respondents were from Syrian households
 				and 50% were from non-Syrian households. Because detail registry data for the Syrian
@@ -89,7 +89,7 @@
 			<h3 class="pb-2 pt-4 text-lg font-bold">Follow-up</h3>
 			<p>
 				Follow-up surveys were conducted in Lebanon in 2020/21 (LE wave 2), 2021/22 (LE wave 3) and
-				2022 (LE wave 4), and in Turkey in 2020/21 (TC wave 2) and 2022 (TC wave 3). In each case,
+				2022 (LE wave 4), and in Türkiye in 2020/21 (TC wave 2) and 2022 (TC wave 3). In each case,
 				respondents from the previous survey wave(s) were first contacted and asked to participate
 				in the survey again. The re-contacting of the participants took place on the basis of the
 				addresses at which the previous interview had taken place. If the respondents could not be
@@ -111,7 +111,7 @@
 			<p>
 				The survey was conducted through Computer Assisted Personal Interviews (CAPI), based on
 				questionnaires designed by the project team for the survey context of Lebanon. In the case
-				of Lebanon, the interviews were conducted in Arabic by native speakers. In Turkey, the
+				of Lebanon, the interviews were conducted in Arabic by native speakers. In Türkiye, the
 				interviews were conducted in Arabic or Turkish according to the preference of the
 				participants. In both cases, a native speaker conducted the interviews. After explaining the
 				purpose and content of the study and obtaining the consent of the participants, the
